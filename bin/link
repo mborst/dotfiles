@@ -1,0 +1,29 @@
+#!/bin/bash -eu
+
+DOTFILES_BIN="$(dirname "$(readlink -f "$0")")"
+DOTFILES="$(dirname "${DOTFILES_BIN}")"
+
+files=(
+  "alacritty.yml"
+  "ideavimrc"
+  "tmux.conf"
+  "gitconfig"
+)
+
+for FILE in "${files[@]}"
+do
+  echo "linking ${FILE}"
+  ln -s "${DOTFILES}/${FILE}" "${HOME}/.${FILE}"
+done
+
+echo "ZDOTDIR=${DOTFILES}/zsh" > "${HOME}/.zshenv"
+
+ln -s /usr/local/opt/fzf/plugin "${DOTFILES}/nvim/pack/submodules/start/fzf"
+
+NVIM_CONFIG_PATH=~/.config/nvim
+ln -s "${DOTFILES}/nvim" "${NVIM_CONFIG_PATH}"
+
+KITTY_CONFIG_PATH=~/.config/kitty
+ln -s "${DOTFILES}/kitty" "${KITTY_CONFIG_PATH}"
+
+mkdir -p "${HOME}/.cache/nvim/"{backups,swaps,undo}

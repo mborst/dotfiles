@@ -1,0 +1,24 @@
+#!/bin/bash
+
+files=(
+  "alacritty.yml"
+  "ideavimrc"
+  "tmux.conf"
+  "gitconfig"
+)
+
+for FILE in "${files[@]}"
+do
+  echo "unlinking ${FILE}"
+  rm "${HOME}/.${FILE}"
+done
+
+rm -r "${HOME}/.zshenv"
+
+rm "${DOTFILES}/nvim/pack/submodules/start/fzf"
+
+NVIM_CONFIG_PATH=~/.config/nvim
+rm -rf "${NVIM_CONFIG_PATH}"
+
+KITTY_CONFIG_PATH=~/.config/kitty
+rm -rf "${KITTY_CONFIG_PATH}"

@@ -1,0 +1,5 @@
+private
+.zcompdump
+.netrwhist
+nvim/pack/submodules/start/fzf
+zsh/.zcompcache/

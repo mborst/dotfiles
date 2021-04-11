@@ -1,0 +1,32 @@
+[core]
+  editor = nvim
+  excludesfile = ~/.gitignore
+  attributesfile = ~/.gitattributes
+
+[color]
+  ui = auto
+
+[push]
+  default = current
+
+[alias]
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+  d = difftool
+
+[difftool]
+  prompt = false
+
+[difftool "vimrdiff"]
+  cmd = vimr --wait --nvim -d $LOCAL $REMOTE
+
+[diff]
+  tool = vimrdiff
+
+[pull]
+  rebase = true
+
+[commit]
+  gpgsign = false
+
+[user]
+  name = Michael Borst

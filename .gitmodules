@@ -1,0 +1,66 @@
+[submodule "nvim/pack/submodules/start/fugitive"]
+	path = nvim/pack/submodules/start/fugitive
+	url = git@github.com:tpope/vim-fugitive.git
+[submodule "nvim/pack/submodules/start/gitgutter"]
+	path = nvim/pack/submodules/start/gitgutter
+	url = git@github.com:airblade/vim-gitgutter.git
+[submodule "nvim/pack/submodules/start/abolish"]
+	path = nvim/pack/submodules/start/abolish
+	url = git://github.com/tpope/vim-abolish.git
+[submodule "nvim/pack/submodules/start/surround"]
+	path = nvim/pack/submodules/start/surround
+	url = git@github.com:tpope/vim-surround
+[submodule "nvim/pack/submodules/start/neomake"]
+	path = nvim/pack/submodules/start/neomake
+	url = git@github.com:neomake/neomake.git
+[submodule "nvim/pack/submodules/start/repeat"]
+	path = nvim/pack/submodules/start/repeat
+	url = git://github.com/tpope/vim-repeat.git
+[submodule "nvim/pack/submodules/start/qf"]
+	path = nvim/pack/submodules/start/qf
+	url = git@github.com:romainl/vim-qf.git
+[submodule "nvim/pack/submodules/start/mundo"]
+	path = nvim/pack/submodules/start/mundo
+	url = git@github.com:simnalamburt/vim-mundo.git
+[submodule "nvim/pack/submodules/start/fzf"]
+	path = nvim/pack/submodules/start/fzf.vim
+	url = git@github.com:junegunn/fzf.vim.git
+[submodule "nvim/pack/submodules/start/nrun"]
+	path = nvim/pack/submodules/start/nrun
+	url = git@github.com:jaawerth/nrun.vim.git
+[submodule "nvim/pack/submodules/start/rust"]
+	path = nvim/pack/submodules/start/rust
+	url = git@github.com:rust-lang/rust.vim.git
+[submodule "nvim/pack/submodules/start/neoformat"]
+	path = nvim/pack/submodules/start/neoformat
+	url = git@github.com:sbdchd/neoformat.git
+[submodule "nvim/pack/submodules/start/fugitive-gitlab"]
+	path = nvim/pack/submodules/start/fugitive-gitlab
+	url = git@github.com:shumphrey/fugitive-gitlab.vim.git
+[submodule "nvim/pack/submodules/start/gruvbox"]
+	path = nvim/pack/submodules/start/gruvbox
+	url = git@github.com:gruvbox-community/gruvbox.git
+[submodule "nvim/pack/submodules/start/tmux-navigator"]
+	path = nvim/pack/submodules/start/tmux-navigator
+	url = git@github.com:christoomey/vim-tmux-navigator
+[submodule "nvim/pack/submodules/start/auto-pairs"]
+	path = nvim/pack/submodules/start/auto-pairs
+	url = git@github.com:jiangmiao/auto-pairs
+[submodule "nvim/pack/submodules/start/polyglot"]
+	path = nvim/pack/submodules/start/polyglot
+	url = git@github.com:sheerun/vim-polyglot
+[submodule "nvim/pack/submodules/start/commentary"]
+	path = nvim/pack/submodules/start/commentary
+	url = git@github.com:tpope/vim-commentary
+[submodule "nvim/pack/submodules/start/unimpaired"]
+	path = nvim/pack/submodules/start/unimpaired
+	url = git@github.com:tpope/vim-unimpaired
+[submodule "nvim/pack/submodules/start/slime"]
+	path = nvim/pack/submodules/start/slime
+	url = git@github.com:jpalardy/vim-slime
+[submodule "nvim/pack/submodules/start/rainbow_parentheses.vim"]
+	path = nvim/pack/submodules/start/rainbow_parentheses.vim
+	url = git@github.com:junegunn/rainbow_parentheses.vim
+[submodule "nvim/pack/submodules/start/expand-region"]
+	path = nvim/pack/submodules/start/expand-region
+	url = git@github.com:terryma/vim-expand-region

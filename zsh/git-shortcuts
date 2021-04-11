@@ -1,0 +1,123 @@
+GIT="command git"
+
+# Detect shells (like zsh) that do not split variables into arguments
+EXPRESSION="! X"
+if [ $EXPRESSION ]
+then
+    GIT=($=GIT)
+fi
+
+alias g0='cd $(git rev-parse --show-toplevel)'
+
+alias ga="$GIT add"
+alias gaa="$GIT add --all"
+alias gap="$GIT add --patch"
+alias gau="$GIT add -u"
+alias gb="$GIT branch"
+alias gB="$GIT branch -f"
+alias gbd="$GIT branch -d"
+alias gbD="$GIT branch -D"
+alias gbm="$GIT branch -m"
+alias gbM="$GIT branch -M"
+alias gc="$GIT commit -v"
+alias gca="$GIT commit -v --amend"
+gcf() {
+    $GIT commit --fixup=$1
+}
+gcm() {
+    $GIT commit -m "$*"
+}
+alias gd="$GIT diff"
+alias gdc="$GIT diff --cached"
+alias gds="$GIT diff --stat"
+alias gdcs="$GIT diff --cached --stat"
+gdo() {
+    $GIT diff origin/$(git rev-parse --abbrev-ref HEAD) "$@"
+}
+alias ge="$GIT active"
+alias gf="$GIT fetch"
+alias gfp="$GIT fetch --prune"
+alias gfa="$GIT fetch --all"
+gfrm() {
+    $GIT fetch && $GIT rebase origin/master
+}
+alias gg="$GIT grep"
+alias gh="$GIT stash"
+alias ghd="$GIT stash drop"
+alias ghl="$GIT stash list"
+alias ghp="$GIT stash pop"
+alias ghs="$GIT stash show"
+alias gk="$GIT cherry-pick"
+alias gka="$GIT cherry-pick --abort"
+alias gkc="$GIT cherry-pick --continue"
+alias gks="$GIT cherry-pick --skip"
+alias gl="$GIT log"
+alias glg="$GIT log --graph"
+alias glo="$GIT log --oneline"
+alias glgo="$GIT log --graph --oneline"
+alias glog="$GIT log --oneline --decorate --color --graph"
+alias glp="$GIT log -p"
+alias gn="$GIT clean"
+alias gnf="$GIT clean -f"
+alias gco="$GIT checkout"
+alias gob="$GIT checkout -b"
+alias goB="$GIT checkout -B"
+alias gomb="$GIT checkout origin/master -b"
+alias gomB="$GIT checkout origin/master -B"
+alias gop="$GIT checkout -p"
+alias gp="$GIT push"
+alias gpf="$GIT push -f"
+alias gph="$GIT push origin HEAD"
+alias gphf="$GIT push origin HEAD -f"
+alias gphu="$GIT push origin HEAD -u"
+alias gphuf="$GIT push origin HEAD -u -f"
+alias gpu="$GIT push -u"
+alias gpuf="$GIT push -u -f"
+alias gq="$GIT pull-request"
+alias gr="$GIT rebase"
+alias gra="$GIT rebase --abort"
+alias grc="$GIT rebase --continue"
+alias gri="$GIT rebase -i"
+alias grim="$GIT rebase -i origin/master"
+alias gro="$GIT rebase --onto"
+alias grom="$GIT rebase --onto origin/master"
+alias grm="$GIT rebase origin/master"
+alias grs="$GIT rebase --skip"
+alias gs="$GIT status -sb"
+alias gm="$GIT submodule"
+alias gma="$GIT submodule add"
+alias gmf="$GIT submodule foreach"
+alias gmt="$GIT mergetool"
+alias gmu="$GIT submodule update"
+alias gt="$GIT tag"
+alias gx="$GIT reset"
+alias gxh="$GIT reset --hard"
+alias gxk="$GIT reset --keep"
+alias gxm="$GIT reset --merge"
+alias gxp="$GIT reset -p"
+alias gxs="$GIT reset --soft"
+alias gwch="$GIT log --cc --diff-algorithm=minimal"
+
+gci() {
+    $GIT commit -nm '(Index)'
+}
+
+gcb() {
+    $GIT commit -nm '(Index)'
+    $GIT commit -anm '(Worktree)'
+}
+
+git-last() {
+    $GIT log --format=%B --max-count=1
+}
+
+gxb() {
+    if [[ `git-last` = "(Worktree)" ]]
+    then
+        $GIT reset HEAD~
+    fi
+    if [[ `git-last` = "(Index)" ]]
+    then
+        $GIT reset --soft HEAD~
+    fi
+}

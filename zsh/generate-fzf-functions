@@ -1,0 +1,213 @@
+#!/usr/bin/env bash
+## Requires git-shortcuts
+
+cat <<'EOF'
+fzf_complete_branch() {
+  _fzf_complete "--tac" "$@" < <(
+    git for-each-ref refs/heads/ --format '%(refname:short)' \
+          --sort committerdate
+  )
+}
+
+fzf_complete_local_commit() {
+  _fzf_complete "--tac" "$@" < <(
+      git log --oneline origin/master..
+  )
+}
+
+fzf_complete_local_commit_post() {
+  cut -d ' ' -f 1
+}
+
+fzf_complete_pod() {
+  _fzf_complete "--tac" "$@" < <(
+    kubectl get pods | tail -n +2
+  )
+}
+
+fzf_complete_pod_post() {
+  cut -d ' ' -f 1
+}
+
+fzf_complete_rs() {
+  _fzf_complete "--tac" "$@" < <(
+    kubectl get rs | tail -n +2
+  )
+}
+
+fzf_complete_rs_post() {
+  cut -d ' ' -f 1
+}
+
+fzf_complete_deployment() {
+  _fzf_complete "--tac" "$@" < <(
+    kubectl get deployments | tail -n +2
+  )
+}
+
+fzf_complete_deployment_post() {
+  cut -d ' ' -f 1
+}
+
+fzf_complete_service() {
+  _fzf_complete "--tac" "$@" < <(
+    kubectl get services | tail -n +2
+  )
+}
+
+fzf_complete_service_post() {
+  cut -d ' ' -f 1
+}
+
+fzf_complete_secret() {
+  _fzf_complete "--tac" "$@" < <(
+    kubectl get secrets | tail -n +2
+  )
+}
+
+fzf_complete_secret_post() {
+  cut -d ' ' -f 1
+}
+
+fzf_complete_cm() {
+  _fzf_complete "--tac" "$@" < <(
+    kubectl get cm | tail -n +2
+  )
+}
+
+fzf_complete_cm_post() {
+  cut -d ' ' -f 1
+}
+
+_fzf_complete_klf() {
+  _fzf_complete "--tac" "$@" < <(
+    kubectl get pods -o json | jq -r '.items[] | .metadata.name as $name | "\($name) \(.spec.containers[].name)"'
+  )
+}
+
+_fzf_complete_brew() {
+  ARGS="$@"
+  if [[ $ARGS == 'brew uninstall'* ]]; then
+    INSTALLED="$(brew list --cask)"
+    _fzf_complete --reverse --multi -- "$@" < <(
+        echo "$INSTALLED"
+    )
+  elif [[ $ARGS == 'brew install'* ]] || [[ $ARGS == 'brew info'* ]] || [[ $ARGS == 'brew upgrade'* ]]; then
+    FORMULA_CACHE_FILE="$HOME/.brew-formulae"
+    CASK_CACHE_FILE="$HOME/.brew-cask-formulae"
+    echo "\nUpdating..."
+    brew update | ggrep "Already up-to-date."
+    echo $IS_UPTODATE
+    if [[ ! -f $FORMULA_CACHE_FILE ]] || [[ ! -f $CASK_CACHE_FILE ]] || [[ $IS_UPTODATE -ne 0 ]]; then
+      echo "Refreshing cache..."
+      AVAILABLE_FORMULAS="$(brew formulae | tee $FORMULA_CACHE_FILE)"
+      AVAILABLE_CASKS="$(brew formulae --casks | tee $CASK_CACHE_FILE)"
+    else
+      AVAILABLE_FORMULAS="$(cat $FORMULA_CACHE_FILE)"
+      AVAILABLE_CASKS="$(cat $CASK_CACHE_FILE)"
+    fi
+    _fzf_complete --reverse --multi -- "$@" < <(
+        echo "$AVAILABLE_FORMULAS"
+        echo "$AVAILABLE_CASKS"
+    )
+  else
+    _fzf_complete -- "$@" < <(
+      echo "No completion registered for ${ARGS}."
+    )
+  fi
+}
+EOF
+
+for command in gbd gbD gr gro gxh gxk gxm gxs gco glog gd
+do
+  cat <<EOF
+_fzf_complete_$command() {
+  fzf_complete_branch "\$@"
+}
+EOF
+done
+
+for command in gcf gcs grom gri
+do
+  cat <<EOF
+_fzf_complete_${command}() {
+  fzf_complete_local_commit "\$@"
+}
+_fzf_complete_${command}_post() {
+  fzf_complete_local_commit_post "\$@"
+}
+EOF
+done
+
+# Requires oh-my-zsh kubernetes shortcuts
+for command in kgp kl kdelp kdp keti kpf kep
+do
+  cat <<EOF
+_fzf_complete_${command}() {
+  fzf_complete_pod "\$@"
+}
+_fzf_complete_${command}_post() {
+  fzf_complete_pod_post "\$@"
+}
+EOF
+done
+
+for command in kgrs kdelrs kdrs
+do
+  cat <<EOF
+_fzf_complete_${command}() {
+  fzf_complete_rs "\$@"
+}
+_fzf_complete_${command}_post() {
+  fzf_complete_rs_post "\$@"
+}
+EOF
+done
+
+for command in kgd kdeld kdd ksd
+do
+  cat <<EOF
+_fzf_complete_${command}() {
+  fzf_complete_deployment "\$@"
+}
+_fzf_complete_${command}_post() {
+  fzf_complete_deployment_post "\$@"
+}
+EOF
+done
+
+for command in kgs kdels kds
+do
+  cat <<EOF
+_fzf_complete_${command}() {
+  fzf_complete_service "\$@"
+}
+_fzf_complete_${command}_post() {
+  fzf_complete_service_post "\$@"
+}
+EOF
+done
+
+for command in kgsec kdelsec kdsec
+do
+  cat <<EOF
+_fzf_complete_${command}() {
+  fzf_complete_secret "\$@"
+}
+_fzf_complete_${command}_post() {
+  fzf_complete_secret_post "\$@"
+}
+EOF
+done
+
+for command in kgcm kdelcm kdcm
+do
+  cat <<EOF
+_fzf_complete_${command}() {
+  fzf_complete_cm "\$@"
+}
+_fzf_complete_${command}_post() {
+  fzf_complete_cm_post "\$@"
+}
+EOF
+done
