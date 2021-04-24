@@ -23,7 +23,6 @@ cli_applications=(
   reattach-to-user-namespace
   rg
   telnet
-  tmux
   watch
   zsh
 )

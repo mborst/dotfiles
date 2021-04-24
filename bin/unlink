@@ -3,7 +3,6 @@
 files=(
   "alacritty.yml"
   "ideavimrc"
-  "tmux.conf"
   "gitconfig"
 )
 

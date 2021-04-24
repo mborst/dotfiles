@@ -6,7 +6,6 @@ DOTFILES="$(dirname "${DOTFILES_BIN}")"
 files=(
   "alacritty.yml"
   "ideavimrc"
-  "tmux.conf"
   "gitconfig"
 )
 
