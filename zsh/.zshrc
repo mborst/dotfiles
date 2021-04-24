@@ -5,7 +5,12 @@
 
 ZDOTDIR="${${(%):-%x}:P:h}"
 
-fpath=($ZDOTDIR/functions $ZDOTDIR/completion $fpath)
+fpath=(
+  "$ZDOTDIR/functions"
+  "$ZDOTDIR/completion"
+  "/usr/local/share/zsh-completions"
+  $fpath
+)
 
 #------------------------------
 # History
