@@ -55,9 +55,6 @@
 [submodule "nvim/pack/submodules/start/unimpaired"]
 	path = nvim/pack/submodules/start/unimpaired
 	url = git@github.com:tpope/vim-unimpaired
-[submodule "nvim/pack/submodules/start/slime"]
-	path = nvim/pack/submodules/start/slime
-	url = git@github.com:jpalardy/vim-slime
 [submodule "nvim/pack/submodules/start/rainbow_parentheses.vim"]
 	path = nvim/pack/submodules/start/rainbow_parentheses.vim
 	url = git@github.com:junegunn/rainbow_parentheses.vim

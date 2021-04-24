@@ -4,10 +4,6 @@ colorscheme gruvbox
 let g:gruvbox_contrast_dark='medium'
 let g:gruvbox_contrast_light='medium'
 
-" 'jpalardy/vim-slime'
-let g:slime_target = "tmux"
-let g:slime_paste_file = tempname()
-
 " 'romainl/vim-qf'
 map <leader>l <Plug>QfLnext
 map <leader>L <Plug>QfLprevious
