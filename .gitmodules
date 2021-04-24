@@ -40,9 +40,6 @@
 [submodule "nvim/pack/submodules/start/gruvbox"]
 	path = nvim/pack/submodules/start/gruvbox
 	url = git@github.com:gruvbox-community/gruvbox.git
-[submodule "nvim/pack/submodules/start/tmux-navigator"]
-	path = nvim/pack/submodules/start/tmux-navigator
-	url = git@github.com:christoomey/vim-tmux-navigator
 [submodule "nvim/pack/submodules/start/auto-pairs"]
 	path = nvim/pack/submodules/start/auto-pairs
 	url = git@github.com:jiangmiao/auto-pairs
