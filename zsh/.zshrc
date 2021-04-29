@@ -37,6 +37,7 @@ path=(
   "$HOME/bin"
   "$HOME/.cargo/bin"
   "$HOME/.yarn/bin"
+  "$HOME/code/go/bin"
   "/usr/local/opt/fzf/bin"
   "/usr/local/opt/gnu-sed/libexec/gnubin"
   "/usr/local/opt/python"
