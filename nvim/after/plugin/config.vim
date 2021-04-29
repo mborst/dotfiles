@@ -40,3 +40,13 @@ nnoremap <leader>: :History:<CR>
 let g:neomake_open_list=2
 call neomake#configure#automake('nw', 1000)
 nnoremap tnm :NeomakeToggle<CR>
+
+" LSP
+lua << EOF
+require'lsp'
+EOF
+
+" Completion
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
