@@ -34,9 +34,6 @@
 [submodule "nvim/pack/submodules/start/neoformat"]
 	path = nvim/pack/submodules/start/neoformat
 	url = git@github.com:sbdchd/neoformat.git
-[submodule "nvim/pack/submodules/start/fugitive-gitlab"]
-	path = nvim/pack/submodules/start/fugitive-gitlab
-	url = git@github.com:shumphrey/fugitive-gitlab.vim.git
 [submodule "nvim/pack/submodules/start/gruvbox"]
 	path = nvim/pack/submodules/start/gruvbox
 	url = git@github.com:gruvbox-community/gruvbox.git
