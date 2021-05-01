@@ -40,7 +40,6 @@ done
 gui_applications=(
   1password
   adguard
-  alacritty
   intellij-idea-ce
   istat-menus
   odrive

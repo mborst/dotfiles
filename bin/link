@@ -4,7 +4,6 @@ DOTFILES_BIN="$(dirname "$(readlink -f "$0")")"
 DOTFILES="$(dirname "${DOTFILES_BIN}")"
 
 files=(
-  "alacritty.yml"
   "ideavimrc"
   "gitconfig"
 )

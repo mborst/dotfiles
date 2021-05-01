@@ -1,7 +1,6 @@
 #!/bin/bash
 
 files=(
-  "alacritty.yml"
   "ideavimrc"
   "gitconfig"
 )
