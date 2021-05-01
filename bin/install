@@ -1,71 +1,51 @@
 #!/bin/bash -eu
 
-cli_applications=(
-  coreutils
-  docker
-  findutils
-  fpp
-  gawk
-  git
-  gnu-getopt
-  gnu-sed
-  gnupg
-  grep
-  gzip
-  htop
-  jid
-  jq
-  kubectl
-  less
-  maven
-  neovim
-  pv
-  reattach-to-user-namespace
-  rg
-  telnet
-  watch
-  zsh
-)
+brew install \
+  "coreutils" \
+  "curl" \
+  "docker" \
+  "fd" \
+  "findutils" \
+  "firefox" \
+  "fpp" \
+  "gawk" \
+  "git" \
+  "gnu-getopt" \
+  "gnu-indent" \
+  "gnu-sed" \
+  "gnu-tar" \
+  "gnu-which" \
+  "gnupg" \
+  "grep" \
+  "gzip" \
+  "htop" \
+  "intellij-idea-ce" \
+  "jid" \
+  "jq" \
+  "kitty" \
+  "kubectl" \
+  "less" \
+  "luarocks" \
+  "maven" \
+  "moreutils" \
+  "pstree" \
+  "pv" \
+  "readline" \
+  "rectangle" \
+  "ripgrep" \
+  "shellcheck" \
+  "spotify" \
+  "telnet" \
+  "tree" \
+  "watch" \
+  "zsh" \
+  "zsh-completions" \
+  "zsh-syntax-highlighting"
 
-for application in "${cli_applications[@]}"
-do
-  read -p "Install $application (y/n)?"$'\n' choice
-  case "$choice" in
-    y|Y) brew install "$application";;
-    n|N) echo "skipping...";;
-    *) echo "invalid";;
-  esac
-done
+brew install --head "luajit" "neovim"
 
-gui_applications=(
-  1password
-  adguard
-  intellij-idea-ce
-  istat-menus
-  odrive
-  spectacle
-  spotify
-)
+brew tap homebrew/cask-fonts
 
-for application in "${gui_applications[@]}"
-do
-  read -p "Install $application (y/n)?"$'\n' choice
-  echo
-  case "$choice" in
-    y|Y) brew install "$application";;
-    n|N) echo "skipping...";;
-    * ) echo "invalid";;
-  esac
-done
-
-
-read -p $'Install font fira code (y/n)?\n' choice
-echo
-case "$choice" in
-  y|Y)
-    brew tap homebrew/cask-fonts
-    brew install --cask font-fira-code
-    ;;
-  n|N) echo "skipping...";;
-  *) echo "invalid";;
-esac
+brew install --cask \
+  "docker" \
+  "font-fira-code"
