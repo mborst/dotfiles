@@ -77,7 +77,7 @@ export EDITOR=nvim
 # Make gpg more reliable
 export GPG_TTY=$(tty)
 
-export "GOPATH=${HOME}/code/go"
+export "GOPATH=${HOME}/go"
 
 source "$ZDOTDIR/private"
 
