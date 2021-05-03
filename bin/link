@@ -1,6 +1,6 @@
 #!/bin/bash -eu
 
-DOTFILES_BIN="$(dirname "$(readlink -f "$0")")"
+DOTFILES_BIN="$(dirname "$(greadlink -f "$0")")"
 DOTFILES="$(dirname "${DOTFILES_BIN}")"
 
 files=(
