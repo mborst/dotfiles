@@ -68,7 +68,6 @@ manpath=(
 
 source "$ZDOTDIR/aliases"
 source "$ZDOTDIR/git-shortcuts"
-source "$ZDOTDIR/private"
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -79,6 +78,9 @@ export EDITOR=nvim
 export GPG_TTY=$(tty)
 
 export "GOPATH=${HOME}/code/go"
+
+source "$ZDOTDIR/private"
+
 #-----------------------------
 # Dircolors
 #-----------------------------
