@@ -8,12 +8,12 @@ files=(
 for FILE in "${files[@]}"
 do
   echo "unlinking ${FILE}"
-  rm "${HOME}/.${FILE}"
+  rm -f "${HOME}/.${FILE}"
 done
 
-rm -r "${HOME}/.zshenv"
+rm -f "${HOME}/.zshenv"
 
-rm "${DOTFILES}/nvim/pack/submodules/start/fzf"
+rm -f "${DOTFILES}/nvim/pack/submodules/start/fzf"
 
 NVIM_CONFIG_PATH=~/.config/nvim
 rm -rf "${NVIM_CONFIG_PATH}"
