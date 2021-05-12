@@ -58,3 +58,6 @@
 [submodule "nvim/pack/submodules/start/lspconfig"]
 	path = nvim/pack/submodules/start/lspconfig
 	url = git@github.com:neovim/nvim-lspconfig.git
+[submodule "nvim/pack/submodules/start/rhubarb"]
+	path = nvim/pack/submodules/start/rhubarb
+	url = git@github.com:tpope/vim-rhubarb.git
