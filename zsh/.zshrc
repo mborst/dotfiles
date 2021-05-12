@@ -49,6 +49,7 @@ path=(
   "/usr/local/opt/gawk/libexec/gnubin"
   "/usr/local/opt/gnu-getopt/libexec/gnubin"
   "/usr/local/opt/gnu-indent/libexec/gnubin"
+  "/usr/local/opt/gnu-tar/libexec/gnubin"
   "/usr/local/opt/gnu-sed/libexec/gnubin"
   "/usr/local/opt/grep/libexec/gnubin"
   $path
@@ -61,6 +62,7 @@ manpath=(
   "/usr/local/opt/gnu-getopt/libexec/gnuman"
   "/usr/local/opt/gnu-indent/libexec/gnuman"
   "/usr/local/opt/gnu-sed/libexec/gnuman"
+  "/usr/local/opt/gnu-tar/libexec/gnuman"
   "/usr/local/opt/grep/libexec/gnuman"
   "/usr/local/share/man"
   "/usr/share/man"
