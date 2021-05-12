@@ -83,9 +83,6 @@ set completeopt=menuone,noinsert,noselect
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Change mapleader
-" nnoremap <SPACE> <Nop>
-" let mapleader=" "
 
 " Smart way to move between splits
 noremap <C-j> <C-W>j
