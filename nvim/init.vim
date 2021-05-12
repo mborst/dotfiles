@@ -120,6 +120,8 @@ nnoremap dhb :call custom#DeleteHiddenBuffers()<CR>
 " Needed on MacOs to be able to edit crontabs
 autocmd filetype crontab setlocal nobackup nowritebackup
 
+autocmd BufNewFile,BufRead *.sky set filetype=bzl
+
 " Avro schemas are jsons
 autocmd BufNewFile,BufRead *.avsc setfiletype json syntax=json
 
