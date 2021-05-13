@@ -61,3 +61,6 @@
 [submodule "nvim/pack/submodules/start/rhubarb"]
 	path = nvim/pack/submodules/start/rhubarb
 	url = git@github.com:tpope/vim-rhubarb.git
+[submodule "nvim/pack/submodules/start/indentLine"]
+	path = nvim/pack/submodules/start/indentLine
+	url = git@github.com:Yggdroot/indentLine.git

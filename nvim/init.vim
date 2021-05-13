@@ -30,7 +30,7 @@ set backspace=2
 
 set mouse=a
 
-set wildmenu wildmode=longest:full
+set wildmenu wildmode=longest,list
 
 set noautochdir
 
