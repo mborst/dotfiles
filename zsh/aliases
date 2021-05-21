@@ -1,12 +1,7 @@
 alias vim=nvim
 alias vi=nvim
 
-# Detect which `ls` flavor is in use
-if ls --color > /dev/null 2>&1; then # GNU `ls`
-	colorflag="--color"
-else # OS X `ls`
-	colorflag="-G"
-fi
+alias ls='ls --color=auto'
 
 alias bubo='brew update && brew outdated'
 alias bubc='brew upgrade && brew cleanup'
