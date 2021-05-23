@@ -1,6 +1,8 @@
 """"""""""""""""""""
 " General settings
 """"""""""""""""""""
+set rtp+=/usr/local/opt/fzf
+
 set lazyredraw
 
 set ignorecase
