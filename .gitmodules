@@ -64,3 +64,6 @@
 [submodule "nvim/pack/submodules/start/indentLine"]
 	path = nvim/pack/submodules/start/indentLine
 	url = git@github.com:Yggdroot/indentLine.git
+[submodule "nvim/pack/submodules/start/treesitter"]
+	path = nvim/pack/submodules/start/treesitter
+	url = git@github.com:nvim-treesitter/nvim-treesitter.git
