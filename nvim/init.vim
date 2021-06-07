@@ -106,6 +106,8 @@ vnoremap <leader>sr y:%s/\<<C-r>"\>//<Left>
 nnoremap <leader>a :Rg<Space>
 nnoremap <leader>A :Rg<Space><C-R><C-W>
 vnoremap <leader>A y:Rg <C-r>"<CR>
+nnoremap <leader>Ab :Rg<Space>\b<C-R><C-W>\b<CR>
+vnoremap <leader>Ab y:Rg \b<C-r>"\b<CR>
 
 nnoremap <leader>v :vsplit<CR>
 nnoremap <leader>h :split<CR>
