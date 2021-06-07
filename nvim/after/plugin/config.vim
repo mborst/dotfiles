@@ -40,6 +40,7 @@ nnoremap <leader>: :History:<CR>
 let g:neomake_open_list=2
 "call neomake#configure#automake('w', 1000)
 nnoremap tnm :NeomakeToggle<CR>
+let g:neomake_python_enabled_makers = ['python', 'flake8']
 
 " LSP
 lua << EOF
