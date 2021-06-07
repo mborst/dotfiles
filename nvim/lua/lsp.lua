@@ -3,7 +3,7 @@ local nvim_lsp = require('lspconfig')
 settings = {
   pyls = {
     pyls = {
-      configurationSources = {"flake8"},
+      configurationSources = {"flake8", "mypy"},
       plugins = {
         jedi_completion = {enabled = true},
         jedi_hover = {enabled = true},
@@ -11,13 +11,11 @@ settings = {
         jedi_signature_help = {enabled = true},
         jedi_symbols = {enabled = true, all_scopes = true},
         pycodestyle = {enabled = false},
-        flake8 = {
-          enabled = true,
-        },
-        mypy = {enabled = false},
+        flake8 = { enabled = true },
+        mypy = {enabled = true},
         isort = {enabled = false},
         yapf = {enabled = false},
-        pylint = {enabled = false},
+        pylint = {enabled = true},
         pydocstyle = {enabled = false},
         mccabe = {enabled = false},
         preload = {enabled = false},
