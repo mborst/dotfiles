@@ -121,6 +121,9 @@ inoremap jj <ESC>
 " Delete hidden buffers
 nnoremap dhb :call custom#DeleteHiddenBuffers()<CR>
 
+" Open all files in quickfix list
+command! QuickFixOpenAll call custom#QuickFixOpenAll()
+
 " Needed on MacOs to be able to edit crontabs
 autocmd filetype crontab setlocal nobackup nowritebackup
 
