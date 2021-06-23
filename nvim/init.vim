@@ -156,9 +156,7 @@ set statusline+=]                               " Indent settings: end
 set statusline+=\ %{fugitive\#statusline()}
 
 if has('statusline')
-  set titlestring=VIM
-  set titlestring+=\ [%{getcwd()}]
-  set titlestring+=\ %<%F
+  set title titlestring=nvim\ %F
 endif
 
 set cmdheight=1
