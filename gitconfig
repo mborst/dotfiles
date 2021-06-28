@@ -28,5 +28,8 @@
 [commit]
   gpgsign = false
 
+[interactive]
+	singleKey = true
+
 [user]
   name = Michael Borst
