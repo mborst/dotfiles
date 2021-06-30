@@ -35,6 +35,7 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 #------------------------------
 path=(
   "$HOME/bin"
+  "$HOME/.local/bin"
   "$HOME/.cargo/bin"
   "$HOME/.yarn/bin"
   "$HOME/code/go/bin"
