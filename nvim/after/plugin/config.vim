@@ -34,6 +34,9 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>w :Windows<CR>
 nnoremap <leader>: :History:<CR>
 
+" gitgutter
+let g:gitgutter_grep = 'rg'
+
 " NEOMAKE
 let g:neomake_open_list=2
 "call neomake#configure#automake('w', 1000)
