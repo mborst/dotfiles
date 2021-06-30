@@ -81,6 +81,12 @@ EOF
 "EOF
 
 " Completion
-"let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-"inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-"inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+let g:completion_trigger_keyword_length = 3
+let g:completion_chain_complete_list = [
+    \{'complete_items': ['lsp']},
+    \{'mode': '<c-p>'},
+    \{'mode': '<c-n>'}
+\]
+set completeopt=menuone,noinsert,noselect
+set shortmess+=c
