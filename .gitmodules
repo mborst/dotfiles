@@ -67,3 +67,6 @@
 [submodule "nvim/pack/submodules/start/treesitter"]
 	path = nvim/pack/submodules/start/treesitter
 	url = git@github.com:nvim-treesitter/nvim-treesitter.git
+[submodule "nvim/pack/submodules/start/apprentice"]
+	path = nvim/pack/submodules/start/apprentice
+	url = git@github.com:romainl/Apprentice.git
