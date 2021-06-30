@@ -1,8 +1,6 @@
 set termguicolors
-set background=light
-colorscheme gruvbox
-let g:gruvbox_contrast_dark='medium'
-let g:gruvbox_contrast_light='medium'
+set background=dark
+colorscheme apprentice
 
 " 'romainl/vim-qf'
 map <leader>l <Plug>QfLnext
