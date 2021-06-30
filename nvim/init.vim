@@ -143,16 +143,6 @@ set statusline+=\ %h%m%r%w                    " status flags
 set statusline+=(\ %l/%L,\ %c\ )              " line, character
 set statusline+=%=                            " right align remainder
 
-set statusline+=\ \                             " --
-set statusline+=%{&filetype}                    " Filetype
-set statusline+=\ \                             " --
-set statusline+=%{&fenc}                        " File encoding
-set statusline+=[%{&ff}]                        " File format
-set statusline+=[                               " Indent settings: begin
-set statusline+=%{&expandtab?\"sp\":\"tab\"}\   " Indent settings
-set statusline+=%{&shiftwidth}                  " Indent settings
-set statusline+=]                               " Indent settings: end
-
 set statusline+=\ %{fugitive\#statusline()}
 
 if has('statusline')
