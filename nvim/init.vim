@@ -166,6 +166,8 @@ set cmdheight=1
 nnoremap <leader>p :let @+=@"<CR>
 nnoremap <leader>P :let @+=@%<CR>
 
+autocmd FileType make set noexpandtab shiftwidth=4 softtabstop=0
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Handle files that changed on disk in neovim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
