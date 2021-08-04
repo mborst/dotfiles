@@ -196,6 +196,16 @@ source "/usr/local/opt/fzf/shell/key-bindings.zsh"
 
 source "${ZDOTDIR}/fzf-functions"
 
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf "$@" --preview 'tree -C {} | head -200' ;;
+    *)            fzf "$@" ;;
+  esac
+}
+
 export FZF_DEFAULT_OPTS='--height 30% --layout=reverse'
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
