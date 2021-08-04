@@ -86,7 +86,7 @@ set completeopt=menuone,noinsert,noselect
 " Netrw
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:netrw_banner=0
-let g:netrw_liststyle=3
+let g:netrw_liststyle=0
 let g:netrw_preview=1
 let g:netrw_winsize=15
 
@@ -121,7 +121,7 @@ nnoremap <leader>v :vsplit<CR>
 nnoremap <leader>h :split<CR>
 nnoremap <leader>Q :bdelete<CR>
 
-nnoremap <leader>e :Sexplore<CR>
+nnoremap <leader>e :Explore<CR>
 
 " Map jj to go to normal mode
 inoremap jj <ESC>
