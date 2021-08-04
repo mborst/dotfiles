@@ -19,7 +19,6 @@ settings = {
         pydocstyle = {enabled = false},
         mccabe = {enabled = false},
         preload = {enabled = false},
-        rope_completion = {enabled = false}
       }
     }
   }
@@ -82,7 +81,7 @@ local on_attach = function(client, bufnr)
   end
 end
 
-local servers = { 'gopls', 'pyls' }
+local servers = { 'gopls', 'pylsp' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
