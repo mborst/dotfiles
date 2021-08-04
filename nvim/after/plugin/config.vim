@@ -1,4 +1,4 @@
-set termguicolors
+set notermguicolors
 set background=dark
 
 function! MyHighlights() abort
