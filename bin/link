@@ -24,4 +24,8 @@ ln -s "${DOTFILES}/nvim" "${NVIM_CONFIG_PATH}"
 KITTY_CONFIG_PATH=~/.config/kitty
 ln -s "${DOTFILES}/kitty" "${KITTY_CONFIG_PATH}"
 
+BAT_CONFIG_PATH=$(bat --config-file)
+mkdir --parents "$(dirname "${BAT_CONFIG_PATH}")"
+ln -s "${DOTFILES}/bat.conf" "${BAT_CONFIG_PATH}"
+
 mkdir -p "${HOME}/.cache/nvim/"{backups,swaps,undo}

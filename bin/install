@@ -40,7 +40,9 @@ brew install \
   "watch" \
   "zsh" \
   "zsh-completions" \
-  "zsh-syntax-highlighting"
+  "zsh-syntax-highlighting" \
+  "git-delta" \
+  "bat"
 
 brew install --head "luajit" "neovim"
 
