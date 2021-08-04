@@ -67,3 +67,6 @@
 [submodule "nvim/pack/submodules/start/apprentice"]
 	path = nvim/pack/submodules/start/apprentice
 	url = git@github.com:romainl/Apprentice.git
+[submodule "nvim/pack/submodules/start/zenburn"]
+	path = nvim/pack/submodules/start/zenburn
+	url = git@github.com:jnurmine/Zenburn.git
