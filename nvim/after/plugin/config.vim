@@ -1,5 +1,15 @@
 set termguicolors
 set background=dark
+
+function! MyHighlights() abort
+    highlight Comment ctermbg=NONE ctermfg=101 cterm=NONE guibg=NONE guifg=#87875f gui=NONE
+endfunction
+
+augroup MyColors
+    autocmd!
+    autocmd ColorScheme * call MyHighlights()
+augroup END
+
 colorscheme apprentice
 
 " 'romainl/vim-qf'
