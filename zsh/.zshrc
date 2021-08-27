@@ -96,6 +96,7 @@ export LS_COLORS
 #------------------------------
 setopt AUTO_CD
 setopt NONOMATCH
+setopt interactivecomments
 
 #------------------------------
 # ShellFuncs
