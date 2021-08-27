@@ -34,9 +34,6 @@
 [submodule "nvim/pack/submodules/start/neoformat"]
 	path = nvim/pack/submodules/start/neoformat
 	url = git@github.com:sbdchd/neoformat.git
-[submodule "nvim/pack/submodules/start/polyglot"]
-	path = nvim/pack/submodules/start/polyglot
-	url = git@github.com:sheerun/vim-polyglot
 [submodule "nvim/pack/submodules/start/commentary"]
 	path = nvim/pack/submodules/start/commentary
 	url = git@github.com:tpope/vim-commentary
