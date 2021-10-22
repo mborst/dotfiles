@@ -2,7 +2,6 @@
   editor = nvim
   excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
-  pager = delta --line-numbers --dark
 
 [color]
   ui = auto
@@ -31,15 +30,6 @@
 
 [interactive]
 	singleKey = true
-  diffFilter = delta --line-numbers --dark --color-only --features=interactive
-
-[delta]
-  features = decorations
-  side-by-side = true
-  syntax-theme = zenburn
-
-[delta "interactive"]
-  keep-plus-minus-markers = false
 
 [user]
   name = Michael Borst
