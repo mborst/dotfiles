@@ -1,9 +1,6 @@
 [submodule "nvim/pack/submodules/start/fugitive"]
 	path = nvim/pack/submodules/start/fugitive
 	url = git@github.com:tpope/vim-fugitive.git
-[submodule "nvim/pack/submodules/start/gitgutter"]
-	path = nvim/pack/submodules/start/gitgutter
-	url = git@github.com:airblade/vim-gitgutter.git
 [submodule "nvim/pack/submodules/start/abolish"]
 	path = nvim/pack/submodules/start/abolish
 	url = git://github.com/tpope/vim-abolish.git

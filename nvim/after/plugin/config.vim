@@ -48,8 +48,8 @@ command! -bang -nargs=* Rg
   \   'rg --column --line-number --no-heading --color=always --smart-case --hidden --glob ''!.git/'' -- '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview(), <bang>0)
 
-" gitgutter
-let g:gitgutter_grep = 'rg'
+" fugitive
+nnoremap <leader>gl :Git log --oneline -20<CR>
 
 " NEOMAKE
 let g:neomake_open_list=2
