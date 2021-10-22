@@ -7,7 +7,7 @@ fzf_complete_branch() {
 
 fzf_complete_local_commit() {
   _fzf_complete "--tac" "$@" < <(
-      git log --oneline origin/HEAD..
+      git log -100 --oneline origin/HEAD..
   )
 }
 
