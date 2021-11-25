@@ -13,14 +13,20 @@
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
   d = difftool
 
-[difftool]
-  prompt = false
-
-[difftool "vimrdiff"]
-  cmd = vimr --wait --nvim -d $LOCAL $REMOTE
+[merge]
+  tool = vimdiff
+[mergetool]
+  prompt = true
+[mergetool "vimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
 [diff]
   tool = vimrdiff
+[difftool]
+  prompt = false
+[difftool "vimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE
+
 
 [pull]
   rebase = true
