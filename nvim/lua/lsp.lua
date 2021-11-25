@@ -11,15 +11,16 @@ settings = {
         jedi_signature_help = {enabled = true},
         jedi_symbols = {enabled = true, all_scopes = true},
         pycodestyle = {enabled = false},
-        flake8 = { enabled = true },
+        flake8 = {enabled = true},
         mypy = {enabled = true},
-        isort = {enabled = false},
-        yapf = {enabled = false},
+        isort = {enabled = true},
+        yapf = {enabled = true},
         pylint = {enabled = true},
         pydocstyle = {enabled = false},
         mccabe = {enabled = false},
         preload = {enabled = false},
-      }
+      },
+      formatCommand = {"black"}
     }
   }
 }
@@ -85,6 +86,9 @@ local servers = { 'gopls', 'pylsp' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
-    settings = settings[lsp]
+    settings = settings[lsp],
+    flags = {
+      debounce_text_changes = 150,
+    }
   }
 end
