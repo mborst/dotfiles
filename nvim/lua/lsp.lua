@@ -90,6 +90,7 @@ for _, lsp in ipairs(servers) do
     settings = settings[lsp],
     flags = {
       debounce_text_changes = 150,
-    }
+    },
+    trace = 'messages'
   }
 end
