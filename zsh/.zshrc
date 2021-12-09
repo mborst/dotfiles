@@ -114,15 +114,6 @@ man() {
     man "$@"
 }
 
-# kubernetes extras
-function kla () {
-  ARGS=("$1")
-  if [[ -z "$2" ]]; then
-    ARGS+=("--container" "$2")
-  fi
-  kubectl logs -l app="${ARGS[*]}"
-}
-
 #------------------------------
 # Keybindings
 #------------------------------
