@@ -101,3 +101,6 @@ let g:completion_chain_complete_list = [
     \{'mode': '<c-p>'},
     \{'mode': '<c-n>'}
 \]
+
+set textwidth=100
+set colorcolumn=100
