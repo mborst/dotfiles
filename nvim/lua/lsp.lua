@@ -19,6 +19,7 @@ settings = {
         pydocstyle = {enabled = false},
         mccabe = {enabled = false},
         preload = {enabled = false},
+        black = {enabled = true},
       },
       formatCommand = {"black"}
     }
