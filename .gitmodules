@@ -3,7 +3,7 @@
 	url = git@github.com:tpope/vim-fugitive.git
 [submodule "nvim/pack/submodules/start/abolish"]
 	path = nvim/pack/submodules/start/abolish
-	url = git://github.com/tpope/vim-abolish.git
+	url = git@github.com:tpope/vim-abolish.git
 [submodule "nvim/pack/submodules/start/surround"]
 	path = nvim/pack/submodules/start/surround
 	url = git@github.com:tpope/vim-surround
@@ -12,7 +12,7 @@
 	url = git@github.com:neomake/neomake.git
 [submodule "nvim/pack/submodules/start/repeat"]
 	path = nvim/pack/submodules/start/repeat
-	url = git://github.com/tpope/vim-repeat.git
+	url = git@github.com:tpope/vim-repeat.git
 [submodule "nvim/pack/submodules/start/qf"]
 	path = nvim/pack/submodules/start/qf
 	url = git@github.com:romainl/vim-qf.git
