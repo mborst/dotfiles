@@ -193,7 +193,8 @@ _fzf_comprun() {
   shift
 
   case "$command" in
-    cd)           fzf "$@" --preview 'tree -C {} | head -200' ;;
+    cd)           fzf "$@" --preview 'fd' ;;
+    ls|ll)        fzf "$@" --preview 'fd' ;;
     *)            fzf "$@" ;;
   esac
 }
