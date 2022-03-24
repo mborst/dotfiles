@@ -67,29 +67,27 @@ lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {},
   ignore_install = {},
-  modules = {
-    highlight = {
-      --additional_vim_regex_highlighting = true,
-      --custom_captures = {},
-      enable = true,
-      --module_path = "nvim-treesitter.highlight"
-    },
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = "gnn",
-        node_decremental = "grm",
-        node_incremental = "grn",
-        scope_incremental = "grc"
-      },
-      --module_path = "nvim-treesitter.incremental_selection"
-    },
-    indent = {
-      disable = {},
-      enable = true,
-      --module_path = "nvim-treesitter.indent"
-    }
+  highlight = {
+    --additional_vim_regex_highlighting = true,
+    --custom_captures = {},
+    enable = true
+    --module_path = "nvim-treesitter.highlight"
   },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_decremental = "grm",
+      node_incremental = "grn",
+      scope_incremental = "grc"
+    },
+    --module_path = "nvim-treesitter.incremental_selection"
+  },
+  indent = {
+    disable = {},
+    enable = true,
+    --module_path = "nvim-treesitter.indent"
+  }
 }
 EOF
 
