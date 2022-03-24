@@ -20,3 +20,4 @@ map <C-l> <C-W>l
 
 " Map jj to go to normal mode
 imap jj <ESC>
+set ideajoin
