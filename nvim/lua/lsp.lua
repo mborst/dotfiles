@@ -59,7 +59,7 @@ local on_attach = function(client, bufnr)
   end
 end
 
-local servers = { 'gopls', 'pyright' }
+local servers = { 'gopls', 'pyright', 'kotlin_language_server' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
