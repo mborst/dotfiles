@@ -1,30 +1,6 @@
 local nvim_lsp = require('lspconfig')
 
-settings = {
-  pyls = {
-    pyls = {
-      configurationSources = {"flake8", "mypy"},
-      plugins = {
-        jedi_completion = {enabled = true},
-        jedi_hover = {enabled = true},
-        jedi_references = {enabled = true},
-        jedi_signature_help = {enabled = true},
-        jedi_symbols = {enabled = true, all_scopes = true},
-        pycodestyle = {enabled = false},
-        flake8 = {enabled = true},
-        mypy = {enabled = true},
-        isort = {enabled = true},
-        yapf = {enabled = true},
-        pylint = {enabled = true},
-        pydocstyle = {enabled = false},
-        mccabe = {enabled = false},
-        preload = {enabled = false},
-        black = {enabled = true},
-      },
-      formatCommand = {"black"}
-    }
-  }
-}
+settings = {}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
@@ -83,7 +59,7 @@ local on_attach = function(client, bufnr)
   end
 end
 
-local servers = { 'gopls', 'pylsp' }
+local servers = { 'gopls', 'pyright' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
