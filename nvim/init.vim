@@ -9,7 +9,7 @@ set ignorecase
 set smartcase
 
 "set formatoptions=qrn1
-set formatoptions=tcrqM1j
+set formatoptions=crqM1j
 set encoding=utf-8 " use UTF-8 encoding
 set number " always show line numbers
 set ruler
