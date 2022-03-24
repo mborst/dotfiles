@@ -10,7 +10,6 @@ set number
 set listchars=tab:\|\ ,trail:·,nbsp:_
 set list
 " Make line numbers relative to cursor
-set relativenumber
 set scrolloff=3
 
 " Smart way to move between splits
