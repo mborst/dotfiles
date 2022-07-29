@@ -1,6 +1,10 @@
 local nvim_lsp = require('lspconfig')
 
-settings = {}
+settings = {
+  ['rust_analyzer'] = {
+    ["rust-analyzer"] = {}
+  }
+}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
@@ -59,7 +63,7 @@ local on_attach = function(client, bufnr)
   end
 end
 
-local servers = { 'gopls', 'pyright', 'kotlin_language_server' }
+local servers = { 'gopls', 'pyright', 'kotlin_language_server', 'rust_analyzer' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
