@@ -27,6 +27,8 @@
 [difftool "vimdiff"]
   cmd = nvim -d $LOCAL $REMOTE
 
+[fetch]
+  writeCommitGraph = true
 
 [pull]
   rebase = true
