@@ -91,6 +91,9 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
 " Completion
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 let g:completion_trigger_keyword_length = 3
