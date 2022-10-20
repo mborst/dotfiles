@@ -1,4 +1,5 @@
 local nvim_lsp = require('lspconfig')
+local coq = require('coq')
 
 settings = {
   ['rust_analyzer'] = {
@@ -16,12 +17,11 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 )
 
 local on_attach = function(client, bufnr)
-  require('completion').on_attach()
 
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+  -- buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings
   local opts = { noremap=true, silent=true }
@@ -63,12 +63,12 @@ end
 
 local servers = { 'gopls', 'pyright', 'kotlin_language_server', 'rust_analyzer' }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
+  nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities({
     on_attach = on_attach,
     settings = settings[lsp],
     flags = {
       debounce_text_changes = 150,
     },
     trace = 'messages'
-  }
+  }))
 end

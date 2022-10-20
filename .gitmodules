@@ -43,9 +43,6 @@
 [submodule "nvim/pack/submodules/start/expand-region"]
 	path = nvim/pack/submodules/start/expand-region
 	url = git@github.com:terryma/vim-expand-region
-[submodule "nvim/pack/submodules/start/completion-nvim"]
-	path = nvim/pack/submodules/start/completion-nvim
-	url = git@github.com:nvim-lua/completion-nvim.git
 [submodule "nvim/pack/submodules/start/lspconfig"]
 	path = nvim/pack/submodules/start/lspconfig
 	url = git@github.com:neovim/nvim-lspconfig.git
@@ -64,3 +61,6 @@
 [submodule "nvim/pack/submodules/start/zenburn"]
 	path = nvim/pack/submodules/start/zenburn
 	url = git@github.com:jnurmine/Zenburn.git
+[submodule "nvim/pack/submodules/start/coq"]
+	path = nvim/pack/submodules/start/coq
+	url = git@github.com:ms-jpq/coq_nvim.git
