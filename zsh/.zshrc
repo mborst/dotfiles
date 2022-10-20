@@ -8,7 +8,7 @@ ZDOTDIR="${${(%):-%x}:P:h}"
 fpath=(
   "$ZDOTDIR/functions"
   "$ZDOTDIR/completion"
-  "/usr/local/share/zsh-completions"
+  "/${HOMEBREW_DIR}/share/zsh-completions"
   $fpath
 )
 
@@ -30,6 +30,16 @@ setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history 
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 
+
+#------------------------------
+# Homebrew config
+#------------------------------
+# Force certain more-secure behaviours from homebrew
+export HOMEBREW_NO_INSECURE_REDIRECT=1
+export HOMEBREW_CASK_OPTS=--require-sha
+export HOMEBREW_DIR=/opt/homebrew
+export HOMEBREW_BIN=/opt/homebrew/bin
+
 #------------------------------
 # Environment & Sourcing
 #------------------------------
@@ -39,34 +49,35 @@ path=(
   "$HOME/.cargo/bin"
   "$HOME/.yarn/bin"
   "$HOME/go/bin"
-  "/usr/local/opt/openjdk@17/bin"
-  "/usr/local/opt/fzf/bin"
-  "/usr/local/opt/gnu-sed/libexec/gnubin"
-  "/usr/local/opt/python"
-  "/usr/local/opt/python@2/bin"
-  "/usr/local/opt/python/bin"
-  "/usr/local/opt/coreutils/libexec/gnubin"
-  "/usr/local/opt/findutils/libexec/gnubin"
-  "/usr/local/opt/openssl/bin"
-  "/usr/local/opt/gawk/libexec/gnubin"
-  "/usr/local/opt/gnu-getopt/libexec/gnubin"
-  "/usr/local/opt/gnu-indent/libexec/gnubin"
-  "/usr/local/opt/gnu-tar/libexec/gnubin"
-  "/usr/local/opt/gnu-sed/libexec/gnubin"
-  "/usr/local/opt/grep/libexec/gnubin"
+  "${HOMEBREW_BIN}"
+  "${HOMEBREW_DIR}/opt/openjdk@17/bin"
+  "${HOMEBREW_DIR}/opt/fzf/bin"
+  "${HOMEBREW_DIR}/opt/gnu-sed/libexec/gnubin"
+  "${HOMEBREW_DIR}/opt/python"
+  "${HOMEBREW_DIR}/opt/python@2/bin"
+  "${HOMEBREW_DIR}/opt/python/bin"
+  "${HOMEBREW_DIR}/opt/coreutils/libexec/gnubin"
+  "${HOMEBREW_DIR}/opt/findutils/libexec/gnubin"
+  "${HOMEBREW_DIR}/opt/openssl/bin"
+  "${HOMEBREW_DIR}/opt/gawk/libexec/gnubin"
+  "${HOMEBREW_DIR}/opt/gnu-getopt/libexec/gnubin"
+  "${HOMEBREW_DIR}/opt/gnu-indent/libexec/gnubin"
+  "${HOMEBREW_DIR}/opt/gnu-tar/libexec/gnubin"
+  "${HOMEBREW_DIR}/opt/gnu-sed/libexec/gnubin"
+  "${HOMEBREW_DIR}/opt/grep/libexec/gnubin"
   $path
 )
 
 manpath=(
-  "/usr/local/opt/coreutils/libexec/gnuman"
-  "/usr/local/opt/findutils/libexec/gnuman"
-  "/usr/local/opt/gawk/libexec/gnuman"
-  "/usr/local/opt/gnu-getopt/libexec/gnuman"
-  "/usr/local/opt/gnu-indent/libexec/gnuman"
-  "/usr/local/opt/gnu-sed/libexec/gnuman"
-  "/usr/local/opt/gnu-tar/libexec/gnuman"
-  "/usr/local/opt/grep/libexec/gnuman"
-  "/usr/local/share/man"
+  "${HOMEBREW_DIR}/opt/coreutils/libexec/gnuman"
+  "${HOMEBREW_DIR}/opt/findutils/libexec/gnuman"
+  "${HOMEBREW_DIR}/opt/gawk/libexec/gnuman"
+  "${HOMEBREW_DIR}/opt/gnu-getopt/libexec/gnuman"
+  "${HOMEBREW_DIR}/opt/gnu-indent/libexec/gnuman"
+  "${HOMEBREW_DIR}/opt/gnu-sed/libexec/gnuman"
+  "${HOMEBREW_DIR}/opt/gnu-tar/libexec/gnuman"
+  "${HOMEBREW_DIR}/opt/grep/libexec/gnuman"
+  "${HOMEBREW_DIR}/share/man"
   "/usr/share/man"
 )
 
@@ -183,9 +194,9 @@ PURE_GIT_PULL=0
 # FZF config
 #------------------------------
 # Auto-completion
-[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
+[[ $- == *i* ]] && source "${HOMEBREW_DIR}/opt/fzf/shell/completion.zsh" 2> /dev/null
 # Key bindings
-source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+source "/${HOMEBREW_DIR}/opt/fzf/shell/key-bindings.zsh"
 
 source "${ZDOTDIR}/fzf-functions"
 
@@ -205,4 +216,4 @@ export FZF_DEFAULT_OPTS='--height 30% --layout=reverse'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-source "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "/${HOMEBREW_DIR}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
