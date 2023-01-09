@@ -29,6 +29,7 @@
 
 [fetch]
   writeCommitGraph = true
+  prune = true
 
 [pull]
   rebase = true
