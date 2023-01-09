@@ -181,7 +181,6 @@ zstyle ':completion:*:kill:*'   force-list always
 zstyle ':completion:*:*:killall:*' menu yes select
 zstyle ':completion:*:killall:*'   force-list always
 
-echo 'complete -F __start_kubectl k' >>~/.zshrc
 #------------------------------
 # Prompt
 #------------------------------
