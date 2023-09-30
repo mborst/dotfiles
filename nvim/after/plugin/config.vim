@@ -15,8 +15,8 @@ colorscheme apprentice
 " 'romainl/vim-qf'
 map <leader>l <Plug>QfLnext
 map <leader>L <Plug>QfLprevious
-map <leader>c <Plug>QfCnext
-map <leader>C <Plug>QfCprevious
+map <leader>n <Plug>QfCnext
+map <leader>N <Plug>QfCprevious
 
 " Causes issues with resizing (https://github.com/vim/vim/issues/931).
 let g:qf_loclist_window_bottom = 0
