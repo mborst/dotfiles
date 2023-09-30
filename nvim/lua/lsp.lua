@@ -1,10 +1,25 @@
 local nvim_lsp = require('lspconfig')
-local coq = require('coq')
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 settings = {
-  ['rust_analyzer'] = {
-    ["rust-analyzer"] = {}
-  }
+    ['rust_analyzer'] = {
+        ["rust-analyzer"] = {
+            imports = {
+                granularity = {
+                    group = "module",
+                },
+                prefix = "self",
+            },
+            cargo = {
+                buildScripts = {
+                    enable = false,
+                },
+            },
+            procMacro = {
+                enable = true
+            },
+        }
+    }
 }
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -40,10 +55,12 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setqflist()<CR>', opts)
+  buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('v', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 
   -- Set some keybinds conditional on server capabilities
   if client.server_capabilities.documentFormattingProvider then
-      buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", opts)
+    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", opts)
   end
 
   -- Set autocommands conditional on server_capabilities
@@ -63,12 +80,14 @@ end
 
 local servers = { 'gopls', 'pyright', 'kotlin_language_server', 'rust_analyzer' }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities({
+  nvim_lsp[lsp].setup({
     on_attach = on_attach,
     settings = settings[lsp],
     flags = {
       debounce_text_changes = 150,
     },
-    trace = 'messages'
-  }))
+    trace = 'messages',
+    capabilities = capabilities
+  })
 end
+

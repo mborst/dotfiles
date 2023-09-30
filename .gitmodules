@@ -61,6 +61,51 @@
 [submodule "nvim/pack/submodules/start/zenburn"]
 	path = nvim/pack/submodules/start/zenburn
 	url = git@github.com:jnurmine/Zenburn.git
-[submodule "nvim/pack/submodules/start/coq"]
-	path = nvim/pack/submodules/start/coq
-	url = git@github.com:ms-jpq/coq_nvim.git
+[submodule "nvim/nvim/pack/submodules/start/cmp-nvim-lsp"]
+	path = nvim/nvim/pack/submodules/start/cmp-nvim-lsp
+	url = git@github.com:hrsh7th/cmp-nvim-lsp
+[submodule "nvim/nvim/pack/submodules/start/cmp-buffer"]
+	path = nvim/nvim/pack/submodules/start/cmp-buffer
+	url = git@github.com:hrsh7th/cmp-buffer
+[submodule "nvim/nvim/pack/submodules/start/cmp-path"]
+	path = nvim/nvim/pack/submodules/start/cmp-path
+	url = git@github.com:hrsh7th/cmp-path
+[submodule "nvim/nvim/pack/submodules/start/cmp-cmdline"]
+	path = nvim/nvim/pack/submodules/start/cmp-cmdline
+	url = git@github.com:hrsh7th/cmp-cmdline
+[submodule "nvim/nvim/pack/submodules/start/nvim-cmp"]
+	path = nvim/nvim/pack/submodules/start/nvim-cmp
+	url = git@github.com:hrsh7th/nvim-cmp
+[submodule "nvim/nvim/pack/submodules/start/cmp-vsnip"]
+	path = nvim/nvim/pack/submodules/start/cmp-vsnip
+	url = git@github.com:hrsh7th/cmp-vsnip
+[submodule "nvim/nvim/pack/submodules/start/vim-vsnip"]
+	path = nvim/nvim/pack/submodules/start/vim-vsnip
+	url = git@github.com:hrsh7th/vim-vsnip
+[submodule "nvim/nvim/pack/submodules/start/cmp"]
+	path = nvim/nvim/pack/submodules/start/cmp
+	url = git@github.com:hrsh7th/nvim-cmp
+[submodule "nvim/pack/submodules/start/cmp-nvim-lsp"]
+	path = nvim/pack/submodules/start/cmp-nvim-lsp
+	url = git@github.com:hrsh7th/cmp-nvim-lsp
+[submodule "nvim/pack/submodules/start/cmp-buffer"]
+	path = nvim/pack/submodules/start/cmp-buffer
+	url = git@github.com:hrsh7th/cmp-buffer
+[submodule "nvim/pack/submodules/start/cmp-path"]
+	path = nvim/pack/submodules/start/cmp-path
+	url = git@github.com:hrsh7th/cmp-path
+[submodule "nvim/pack/submodules/start/cmp-cmdline"]
+	path = nvim/pack/submodules/start/cmp-cmdline
+	url = git@github.com:hrsh7th/cmp-cmdline
+[submodule "nvim/pack/submodules/start/cmp"]
+	path = nvim/pack/submodules/start/cmp
+	url = git@github.com:hrsh7th/nvim-cmp
+[submodule "nvim/pack/submodules/start/cmp-vsnip"]
+	path = nvim/pack/submodules/start/cmp-vsnip
+	url = git@github.com:hrsh7th/cmp-vsnip
+[submodule "nvim/pack/submodules/start/vim-vsnip"]
+	path = nvim/pack/submodules/start/vim-vsnip
+	url = git@github.com:hrsh7th/vim-vsnip
+[submodule "nvim/pack/submodules/start/treesitter-textobjects"]
+	path = nvim/pack/submodules/start/treesitter-textobjects
+	url = git@github.com:nvim-treesitter/nvim-treesitter-textobjects

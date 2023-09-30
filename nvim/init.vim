@@ -81,7 +81,6 @@ set undoreload=10000        " number of lines to save for undo
 " Completion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set completeopt=menuone,noinsert,noselect
-let g:coq_settings = { 'auto_start': 'shut-up' }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Netrw
