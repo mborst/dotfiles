@@ -43,6 +43,9 @@ nnoremap <leader>f :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>w :Windows<CR>
 nnoremap <leader>: :History:<CR>
+nnoremap <leader>ls :DocumentSymbols
+nnoremap <leader>ld :DiagnosticsAll<CR>
+nnoremap <leader>lr :References<CR>
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case --hidden --glob ''!.git/'' -- '.shellescape(<q-args>), 1,
@@ -50,6 +53,7 @@ command! -bang -nargs=* Rg
 
 " fugitive
 nnoremap <leader>gl :Git log --oneline -20<CR>
+let g:fzf_lsp_timeout=10000
 
 " NEOMAKE
 let g:neomake_open_list=2

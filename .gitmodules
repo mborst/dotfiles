@@ -109,3 +109,9 @@
 [submodule "nvim/pack/submodules/start/treesitter-textobjects"]
 	path = nvim/pack/submodules/start/treesitter-textobjects
 	url = git@github.com:nvim-treesitter/nvim-treesitter-textobjects
+[submodule "nvim/pack/submodules/start/fzf-lsp"]
+	path = nvim/pack/submodules/start/fzf-lsp
+	url = git@github.com:gfanto/fzf-lsp.nvim.git
+[submodule "nvim/pack/submodules/start/plenary"]
+	path = nvim/pack/submodules/start/plenary
+	url = git@github.com:nvim-lua/plenary.nvim.git
