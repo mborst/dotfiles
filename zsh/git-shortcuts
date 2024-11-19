@@ -8,19 +8,13 @@ then
     GIT=($=GIT)
 fi
 
-alias g0='cd $(git rev-parse --show-toplevel)'
-gclean() {
-  local main=$(git branch | grep -E '^(\*)* +(prod|main|master)$' | sed -e 's/\*//' -e 's/ *//')
-  git checkout $main
-  git fetch --prune
-  git rebase origin/HEAD
-  git branch --merged | grep -Ev "(^\*)" | xargs -r git branch -d
-}
-
+# add
 alias ga="$GIT add"
 alias gaa="$GIT add --all"
 alias gap="$GIT add --patch"
 alias gau="$GIT add -u"
+
+# branch
 alias gb="$GIT branch"
 alias gB="$GIT branch -f"
 alias gbd="$GIT branch -d"
@@ -29,12 +23,25 @@ alias gbm="$GIT branch -m"
 alias gbM="$GIT branch -M"
 alias gc="$GIT commit -v"
 alias gca="$GIT commit -v --amend"
+alias gcan="$GIT commit -v --amend --no-edit"
+
+# commit
 gcf() {
     $GIT commit --fixup=$1
 }
 gcm() {
     $GIT commit -m "$*"
 }
+gci() {
+    $GIT commit -nm '(Index)'
+}
+gcb() {
+    $GIT commit -nm '(Index)'
+    $GIT commit -anm '(Worktree)'
+}
+
+
+# diff
 alias gd="$GIT diff"
 alias gdc="$GIT diff --cached"
 alias gds="$GIT diff --stat"
@@ -42,37 +49,54 @@ alias gdcs="$GIT diff --cached --stat"
 gdo() {
     $GIT diff origin/$(git rev-parse --abbrev-ref HEAD) "$@"
 }
-alias ge="$GIT active"
+
+# fetch
 alias gf="$GIT fetch"
 alias gfp="$GIT fetch --prune"
 alias gfa="$GIT fetch --all"
 gfrm() {
     $GIT fetch && $GIT rebase origin/HEAD
 }
-alias gg="$GIT grep"
+
+# stash
 alias gh="$GIT stash"
 alias ghd="$GIT stash drop"
 alias ghl="$GIT stash list"
 alias ghp="$GIT stash pop"
 alias ghs="$GIT stash show"
+
+# cherry-pick
 alias gk="$GIT cherry-pick"
 alias gka="$GIT cherry-pick --abort"
 alias gkc="$GIT cherry-pick --continue"
 alias gks="$GIT cherry-pick --skip"
+
+# log
 alias gl="$GIT log"
 alias glg="$GIT log --graph"
 alias glo="$GIT log --oneline"
 alias glgo="$GIT log --graph --oneline"
 alias glog="$GIT log --oneline --decorate --color --graph"
 alias glp="$GIT log -p"
+alias gwch="$GIT log --cc --diff-algorithm=minimal"
+git-last() {
+    $GIT log --format=%B --max-count=1
+}
+
+
+# clean
 alias gn="$GIT clean"
 alias gnf="$GIT clean -f"
+
+# checkout
 alias gco="$GIT checkout"
 alias gob="$GIT checkout -b"
 alias goB="$GIT checkout -B"
 alias gomb="$GIT checkout origin/HEAD -b"
 alias gomB="$GIT checkout origin/HEAD -B"
 alias gop="$GIT checkout -p"
+
+# push
 alias gp="$GIT push"
 alias gpf="$GIT push -f"
 alias gph="$GIT push origin HEAD"
@@ -81,7 +105,8 @@ alias gphu="$GIT push origin HEAD -u"
 alias gphuf="$GIT push origin HEAD -u -f"
 alias gpu="$GIT push -u"
 alias gpuf="$GIT push -u -f"
-alias gq="$GIT pull-request"
+
+# rebase
 alias gr="$GIT rebase"
 alias gra="$GIT rebase --abort"
 alias grc="$GIT rebase --continue"
@@ -91,34 +116,14 @@ alias gro="$GIT rebase --onto"
 alias grom="$GIT rebase --onto origin/HEAD"
 alias grm="$GIT rebase origin/HEAD"
 alias grs="$GIT rebase --skip"
-alias gs="$GIT status -sb"
-alias gm="$GIT submodule"
-alias gma="$GIT submodule add"
-alias gmf="$GIT submodule foreach"
-alias gmt="$GIT mergetool"
-alias gmu="$GIT submodule update"
-alias gt="$GIT tag"
+
+# reset
 alias gx="$GIT reset"
 alias gxh="$GIT reset --hard"
 alias gxk="$GIT reset --keep"
 alias gxm="$GIT reset --merge"
 alias gxp="$GIT reset -p"
 alias gxs="$GIT reset --soft"
-alias gwch="$GIT log --cc --diff-algorithm=minimal"
-
-gci() {
-    $GIT commit -nm '(Index)'
-}
-
-gcb() {
-    $GIT commit -nm '(Index)'
-    $GIT commit -anm '(Worktree)'
-}
-
-git-last() {
-    $GIT log --format=%B --max-count=1
-}
-
 gxb() {
     if [[ `git-last` = "(Worktree)" ]]
     then
@@ -128,4 +133,29 @@ gxb() {
     then
         $GIT reset --soft HEAD~
     fi
+}
+
+# status
+alias gs="$GIT status -sb"
+
+# submodule
+alias gm="$GIT submodule"
+alias gma="$GIT submodule add"
+alias gmf="$GIT submodule foreach"
+alias gmu="$GIT submodule update"
+
+# misc
+alias gmt="$GIT mergetool"
+alias gg="$GIT grep"
+alias g0='cd $(git rev-parse --show-toplevel)'
+gclean() {
+  local main=$(git branch | grep -E '^(\*)* +(prod|main|master)$' | sed -e 's/\*//' -e 's/ *//')
+  if [[ -z $main ]]; then
+    echo "Unable to detect main branch"
+    return 1
+  fi
+  git checkout $main \
+    && git fetch --prune \
+    && git rebase origin/HEAD \
+    && git branch --merged | grep -Ev "(^\*)" | xargs -r git branch -d
 }

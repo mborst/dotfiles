@@ -1,12 +1,12 @@
 fzf_complete_branch() {
-  _fzf_complete "--tac" "$@" < <(
+  _fzf_complete "--tac" -- "$@" < <(
     git for-each-ref refs/heads/ --format '%(refname:short)' \
           --sort committerdate
   )
 }
 
 fzf_complete_local_commit() {
-  _fzf_complete "--tac" "$@" < <(
+  _fzf_complete "--tac" -- "$@" < <(
       git log -100 --oneline origin/HEAD..
   )
 }
@@ -16,7 +16,7 @@ fzf_complete_local_commit_post() {
 }
 
 fzf_complete_pod() {
-  _fzf_complete "--tac" "$@" < <(
+  _fzf_complete "--tac" -- "$@" < <(
     kubectl get pods | tail -n +2
   )
 }
@@ -26,7 +26,7 @@ fzf_complete_pod_post() {
 }
 
 fzf_complete_rs() {
-  _fzf_complete "--tac" "$@" < <(
+  _fzf_complete "--tac" -- "$@" < <(
     kubectl get rs | tail -n +2
   )
 }
@@ -36,7 +36,7 @@ fzf_complete_rs_post() {
 }
 
 fzf_complete_deployment() {
-  _fzf_complete "--tac" "$@" < <(
+  _fzf_complete "--tac" -- "$@" < <(
     kubectl get deployments | tail -n +2
   )
 }
@@ -45,8 +45,18 @@ fzf_complete_deployment_post() {
   cut -d ' ' -f 1
 }
 
+fzf_complete_sts() {
+  _fzf_complete "--tac" -- "$@" < <(
+    kubectl get sts | tail -n +2
+  )
+}
+
+fzf_complete_sts_post() {
+  cut -d ' ' -f 1
+}
+
 fzf_complete_service() {
-  _fzf_complete "--tac" "$@" < <(
+  _fzf_complete "--tac" -- "$@" < <(
     kubectl get services | tail -n +2
   )
 }
@@ -56,7 +66,7 @@ fzf_complete_service_post() {
 }
 
 fzf_complete_secret() {
-  _fzf_complete "--tac" "$@" < <(
+  _fzf_complete "--tac" -- "$@" < <(
     kubectl get secrets | tail -n +2
   )
 }
@@ -66,7 +76,7 @@ fzf_complete_secret_post() {
 }
 
 fzf_complete_cm() {
-  _fzf_complete "--tac" "$@" < <(
+  _fzf_complete "--tac" -- "$@" < <(
     kubectl get cm | tail -n +2
   )
 }
@@ -76,7 +86,7 @@ fzf_complete_cm_post() {
 }
 
 _fzf_complete_klf() {
-  _fzf_complete "--tac" "$@" < <(
+  _fzf_complete "--tac" -- "$@" < <(
     kubectl get pods -o json | jq -r '.items[] | .metadata.name as $name | "\($name) \(.spec.containers[].name)"'
   )
 }
@@ -141,13 +151,6 @@ _gb() {
   sed 's#^remotes/##'
 }
 
-_gt() {
-  is_in_git_repo || return
-  git tag --sort -version:refname |
-  fzf-down --multi --preview-window right:70% \
-    --preview 'git show --color=always {}'
-}
-
 _gh() {
   is_in_git_repo || return
   git log -100 --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
@@ -189,6 +192,7 @@ bind-git-helper() {
 bind-git-helper f b t r h s
 
 unset -f bind-git-helper
+
 _fzf_complete_gbd() {
   fzf_complete_branch "$@"
 }
@@ -288,6 +292,12 @@ _fzf_complete_kep() {
 _fzf_complete_kep_post() {
   fzf_complete_pod_post "$@"
 }
+_fzf_complete_kep() {
+  fzf_complete_pod "$@"
+}
+_fzf_complete_kep_post() {
+  fzf_complete_pod_post "$@"
+}
 _fzf_complete_kgrs() {
   fzf_complete_rs "$@"
 }
@@ -330,6 +340,66 @@ _fzf_complete_ksd() {
 _fzf_complete_ksd_post() {
   fzf_complete_deployment_post "$@"
 }
+_fzf_complete_ked() {
+  fzf_complete_deployment "$@"
+}
+_fzf_complete_ked_post() {
+  fzf_complete_deployment_post "$@"
+}
+_fzf_complete_krsd() {
+  fzf_complete_deployment "$@"
+}
+_fzf_complete_krsd_post() {
+  fzf_complete_deployment_post "$@"
+}
+_fzf_complete_krrd() {
+  fzf_complete_deployment "$@"
+}
+_fzf_complete_krrd_post() {
+  fzf_complete_deployment_post "$@"
+}
+_fzf_complete_kgss() {
+  fzf_complete_sts "$@"
+}
+_fzf_complete_kgss_post() {
+  fzf_complete_sts_post "$@"
+}
+_fzf_complete_kdelss() {
+  fzf_complete_sts "$@"
+}
+_fzf_complete_kdelss_post() {
+  fzf_complete_sts_post "$@"
+}
+_fzf_complete_kdss() {
+  fzf_complete_sts "$@"
+}
+_fzf_complete_kdss_post() {
+  fzf_complete_sts_post "$@"
+}
+_fzf_complete_ksss() {
+  fzf_complete_sts "$@"
+}
+_fzf_complete_ksss_post() {
+  fzf_complete_sts_post "$@"
+}
+_fzf_complete_kess() {
+  fzf_complete_sts "$@"
+}
+_fzf_complete_kess_post() {
+  fzf_complete_sts_post "$@"
+}
+_fzf_complete_krsss() {
+  fzf_complete_sts "$@"
+}
+_fzf_complete_krsss_post() {
+  fzf_complete_sts_post "$@"
+}
+_fzf_complete_krrss() {
+  fzf_complete_sts "$@"
+}
+_fzf_complete_krrss_post() {
+  fzf_complete_sts_post "$@"
+}
 _fzf_complete_kgs() {
   fzf_complete_service "$@"
 }
@@ -346,6 +416,12 @@ _fzf_complete_kds() {
   fzf_complete_service "$@"
 }
 _fzf_complete_kds_post() {
+  fzf_complete_service_post "$@"
+}
+_fzf_complete_kes() {
+  fzf_complete_service "$@"
+}
+_fzf_complete_kes_post() {
   fzf_complete_service_post "$@"
 }
 _fzf_complete_kgsec() {
@@ -382,5 +458,11 @@ _fzf_complete_kdcm() {
   fzf_complete_cm "$@"
 }
 _fzf_complete_kdcm_post() {
+  fzf_complete_cm_post "$@"
+}
+_fzf_complete_kecm() {
+  fzf_complete_cm "$@"
+}
+_fzf_complete_kecm_post() {
   fzf_complete_cm_post "$@"
 }
