@@ -33,9 +33,10 @@ cmp.setup({
         end
       },
     },
-  }, {
-    { name = 'buffer', keyword_length = 3},
-  })
+  }),
+  completion = {
+    autocomplete = {},
+  },
 })
 
 -- Set configuration for specific filetype.
