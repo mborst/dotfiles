@@ -21,6 +21,7 @@ set scrolloff=25
 set nojoinspaces
 set foldmethod=syntax
 set nofoldenable
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 
 " Global settings for all files (but may be overridden in ftplugin).
 set tabstop=2
