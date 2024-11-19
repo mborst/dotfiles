@@ -1,3 +1,4 @@
+# vi: ft=bash
 GIT="command git"
 
 # Detect shells (like zsh) that do not split variables into arguments
