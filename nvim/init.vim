@@ -14,7 +14,8 @@ set encoding=utf-8 " use UTF-8 encoding
 set number " always show line numbers
 set ruler
 set nowrap
-set nocursorline
+set cursorline
+set cursorcolumn
 set colorcolumn=+1 " highlight column after 'textwidth'
 set scrolloff=25
 set nojoinspaces
