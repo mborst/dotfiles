@@ -15,7 +15,7 @@ fpath=(
 #------------------------------
 # History
 #------------------------------
-HISTFILE="${HOME}/.zsh_history"
+HISTFILE="${HOME}/.zsh_hist"
 HISTSIZE=1000000
 SAVEHIST=1000000
 setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
