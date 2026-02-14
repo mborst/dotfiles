@@ -118,3 +118,6 @@
 [submodule "nvim/pack/submodules/start/gitgutter"]
 	path = nvim/pack/submodules/start/gitgutter
 	url = git@github.com:airblade/vim-gitgutter.git
+[submodule "nvim/pack/submodules/start/kitty-scrollback"]
+	path = nvim/pack/submodules/start/kitty-scrollback
+	url = git@github.com:mikesmithgh/kitty-scrollback.nvim.git
