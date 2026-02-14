@@ -115,3 +115,6 @@
 [submodule "nvim/pack/submodules/start/plenary"]
 	path = nvim/pack/submodules/start/plenary
 	url = git@github.com:nvim-lua/plenary.nvim.git
+[submodule "nvim/pack/submodules/start/gitgutter"]
+	path = nvim/pack/submodules/start/gitgutter
+	url = git@github.com:airblade/vim-gitgutter.git
