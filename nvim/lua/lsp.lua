@@ -1,26 +1,7 @@
-local nvim_lsp = require('lspconfig')
+if vim.g.vscode then
+  return
+end
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-settings = {
-    ['rust_analyzer'] = {
-        ["rust-analyzer"] = {
-            imports = {
-                granularity = {
-                    group = "module",
-                },
-                prefix = "self",
-            },
-            cargo = {
-                buildScripts = {
-                    enable = false,
-                },
-            },
-            procMacro = {
-                enable = true
-            },
-        }
-    }
-}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
@@ -90,9 +71,40 @@ local on_attach = function(client, bufnr)
   end
 end
 
+settings = {
+  ['rust_analyzer'] = {
+    ["rust-analyzer"] = {
+      imports = {
+        granularity = {
+          group = "module",
+        },
+        prefix = "self",
+      },
+      cargo = {
+        buildScripts = {
+          enable = false,
+        },
+      },
+      procMacro = {
+        enable = true
+      },
+    }
+  }
+}
+
+cmds = {
+  ['gopls'] = { "dd-gopls" }
+}
+
+-- Upgrade to Nvim 0.11+
+-- (Optional) Use vim.lsp.config('…') (not require'lspconfig'.….setup{}) to customize or define a config.
+-- Use vim.lsp.enable('…') (not require'lspconfig'.….setup{}) to enable a config, so that it activates for its filetypes.
+
 local servers = { 'gopls', 'pyright', 'kotlin_language_server', 'rust_analyzer' }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup({
+  local cmd = cmds[lsp] or { lsp }
+  vim.lsp.config(lsp, {
+    cmd = cmd,
     on_attach = on_attach,
     settings = settings[lsp],
     flags = {
@@ -101,5 +113,6 @@ for _, lsp in ipairs(servers) do
     trace = 'messages',
     capabilities = capabilities
   })
+  vim.lsp.enable(lsp)
 end
 

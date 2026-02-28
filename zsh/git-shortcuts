@@ -59,11 +59,11 @@ gfrm() {
 }
 
 # stash
-alias gh="$GIT stash"
-alias ghd="$GIT stash drop"
-alias ghl="$GIT stash list"
-alias ghp="$GIT stash pop"
-alias ghs="$GIT stash show"
+alias gst="$GIT stash"
+alias gstd="$GIT stash drop"
+alias gstl="$GIT stash list"
+alias gstp="$GIT stash pop"
+alias gsts="$GIT stash show"
 
 # cherry-pick
 alias gk="$GIT cherry-pick"
@@ -149,7 +149,7 @@ alias gmt="$GIT mergetool"
 alias gg="$GIT grep"
 alias g0='cd $(git rev-parse --show-toplevel)'
 gclean() {
-  local main=$(git branch | grep -E '^(\*)* +(prod|main|master)$' | sed -e 's/\*//' -e 's/ *//')
+  local main=$(git symbolic-ref refs/remotes/origin/HEAD | cut -d/ -f 4)
   if [[ -z $main ]]; then
     echo "Unable to detect main branch"
     return 1
@@ -157,5 +157,6 @@ gclean() {
   git checkout $main \
     && git fetch --prune \
     && git rebase origin/HEAD \
-    && git branch --merged | grep -Ev "(^\*)" | xargs -r git branch -d
+    && git worktree prune \
+    && git branch --no-column --format '%(refname:short)' --merged | grep -Fvx "${main}" | xargs -r git branch -d
 }

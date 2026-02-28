@@ -1,0 +1,22 @@
+# vi: ft=bash
+
+# Rebase all mutable, unmerged revisions onto trunk and prune empty commits.
+# Optional: pass --include-immutable-empty to also abandon immutable empty commits
+# (uses --ignore-immutable).
+jj_rebase_trunk_prune() {
+  local include_immutable_empty=0
+  if [[ "$1" == "--include-immutable-empty" ]]; then
+    include_immutable_empty=1
+  fi
+
+  jj git fetch && \
+    jj rebase -r 'roots(mine() & mutable() & ~::trunk())' -d 'trunk()' && \
+    jj abandon 'mine() & mutable() & empty()'
+
+  if [[ $include_immutable_empty -eq 1 ]]; then
+    jj abandon --ignore-immutable 'mine() & immutable() & empty()'
+  fi
+}
+
+# Usage: jjrmp [--include-immutable-empty]
+alias jjrmp='jj_rebase_trunk_prune'

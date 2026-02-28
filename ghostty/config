@@ -1,0 +1,1 @@
+keybind = super+o=write_scrollback_file:open

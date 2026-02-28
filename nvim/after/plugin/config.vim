@@ -61,6 +61,10 @@ let g:neomake_open_list=2
 nnoremap tnm :NeomakeToggle<CR>
 let g:neomake_python_enabled_makers = ['python', 'flake8']
 
+lua << EOF
+require('kitty-scrollback').setup()
+EOF
+
 " LSP
 lua << EOF
 require'lsp'
@@ -120,3 +124,4 @@ smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-T
 
 set textwidth=100
 set colorcolumn=100
+set conceallevel=0

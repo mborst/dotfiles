@@ -8,7 +8,7 @@ ZDOTDIR="${${(%):-%x}:P:h}"
 fpath=(
   "$ZDOTDIR/functions"
   "$ZDOTDIR/completion"
-  "/${HOMEBREW_DIR}/share/zsh-completions"
+  "/opt/homebrew/share/zsh/site-functions"
   $fpath
 )
 
@@ -51,6 +51,7 @@ path=(
   "$HOME/go/bin"
   "${HOMEBREW_BIN}"
   "${HOMEBREW_DIR}/opt/openjdk@17/bin"
+  "${HOMEBREW_DIR}/opt/node@18/bin"
   "${HOMEBREW_DIR}/opt/fzf/bin"
   "${HOMEBREW_DIR}/opt/gnu-sed/libexec/gnubin"
   "${HOMEBREW_DIR}/opt/python"
@@ -83,6 +84,7 @@ manpath=(
 
 source "$ZDOTDIR/aliases"
 source "$ZDOTDIR/git-shortcuts"
+source "$ZDOTDIR/jj-shortcuts"
 source "$ZDOTDIR/k8s-aliases"
 
 export LC_ALL=en_US.UTF-8
@@ -126,6 +128,16 @@ man() {
     man "$@"
 }
 
+# -- set terminal title (works both inside and outside tmux)
+title() {
+  local t="$*"
+  if [[ -n "${TMUX:-}" ]]; then
+    printf '\ePtmux;\e\e]2;%s\a\e\\' "$t"
+  else
+    printf '\e]2;%s\a' "$t"
+  fi
+}
+
 #------------------------------
 # Keybindings
 #------------------------------
@@ -162,16 +174,17 @@ bindkey '^P' up-line-or-history
 bindkey '^N' down-line-or-history
 bindkey "^K" history-beginning-search-backward
 
-bindkey -M viins 'jj' vi-cmd-mode # escape insert mode with jj
+bindkey -M viins 'aa' vi-cmd-mode # escape insert mode with jj
 KEYTIMEOUT=30
 
 #------------------------------
 # Comp stuff
 #------------------------------
 zmodload zsh/complist
+
 autoload -Uz compinit
 compinit
-zstyle :compinstall filename '${HOME}/.zshrc'
+zstyle :compinstall filename '${ZDOTDIR}/.zshrc'
 
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
@@ -193,7 +206,9 @@ PURE_GIT_PULL=0
 # FZF config
 #------------------------------
 # Auto-completion
-[[ $- == *i* ]] && source "${HOMEBREW_DIR}/opt/fzf/shell/completion.zsh" 2> /dev/null
+#[[ $- == *i* ]] && source "${HOMEBREW_DIR}/opt/fzf/shell/completion.zsh" 2> /dev/null
+# there's currently a bug in the completions on main
+[[ $- == *i* ]] && source "${ZDOTDIR}/fzf-completion.zsh" 2> /dev/null
 # Key bindings
 source "/${HOMEBREW_DIR}/opt/fzf/shell/key-bindings.zsh"
 
@@ -216,3 +231,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!{.git,node_modules
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 source "/${HOMEBREW_DIR}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

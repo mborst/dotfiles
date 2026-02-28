@@ -124,9 +124,11 @@ nnoremap <leader>h :split<CR>
 nnoremap <leader>Q :bdelete<CR>
 
 nnoremap <leader>e :Explore<CR>
+nnoremap <leader>day :%!yq eval -I2 -P '.data["application.tpl"] = (.data["application.tpl"] \| from_yaml) \| .data["application.yaml"] = (.data["application.yaml"] \| from_yaml)'<CR>
+nnoremap <leader>bn :bnext<CR>
 
-" Map jj to go to normal mode
-inoremap jj <ESC>
+" Map aa to go to normal mode
+inoremap aa <ESC>
 
 " Delete hidden buffers
 nnoremap dhb :call custom#DeleteHiddenBuffers()<CR>
