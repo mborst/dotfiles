@@ -3,14 +3,11 @@ if vim.g.vscode then
 end
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    {
-        underline = false,
-        virtual_text = true,
-        update_in_insert = false
-    }
-)
+vim.diagnostic.config({
+    underline = false,
+    virtual_text = true,
+    update_in_insert = false,
+})
 
 local on_attach = function(client, bufnr)
 
