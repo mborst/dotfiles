@@ -34,7 +34,6 @@ brew install \
   "rectangle" \
   "ripgrep" \
   "shellcheck" \
-  "spotify" \
   "telnet" \
   "tree" \
   "watch" \
