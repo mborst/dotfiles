@@ -10,7 +10,7 @@ augroup MyColors
     autocmd ColorScheme * call MyHighlights()
 augroup END
 
-colorscheme apprentice
+colorscheme tokyonight
 
 " 'romainl/vim-qf'
 map <leader>l <Plug>QfLnext

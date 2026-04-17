@@ -55,9 +55,6 @@
 [submodule "nvim/pack/submodules/start/treesitter"]
 	path = nvim/pack/submodules/start/treesitter
 	url = git@github.com:nvim-treesitter/nvim-treesitter.git
-[submodule "nvim/pack/submodules/start/apprentice"]
-	path = nvim/pack/submodules/start/apprentice
-	url = git@github.com:mborst/Apprentice.git
 [submodule "nvim/pack/submodules/start/zenburn"]
 	path = nvim/pack/submodules/start/zenburn
 	url = git@github.com:jnurmine/Zenburn.git
@@ -121,3 +118,6 @@
 [submodule "nvim/pack/submodules/start/kitty-scrollback"]
 	path = nvim/pack/submodules/start/kitty-scrollback
 	url = git@github.com:mikesmithgh/kitty-scrollback.nvim.git
+[submodule "nvim/pack/submodules/start/tokyonight"]
+	path = nvim/pack/submodules/start/tokyonight
+	url = git@github.com:folke/tokyonight.nvim.git
