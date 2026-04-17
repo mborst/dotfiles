@@ -19,7 +19,6 @@ brew install \
   "grep" \
   "gzip" \
   "htop" \
-  "intellij-idea-ce" \
   "jid" \
   "jq" \
   "kubectl" \
@@ -30,7 +29,6 @@ brew install \
   "pstree" \
   "pv" \
   "readline" \
-  "rectangle" \
   "ripgrep" \
   "shellcheck" \
   "telnet" \
@@ -40,12 +38,8 @@ brew install \
   "zsh-completions" \
   "zsh-syntax-highlighting" \
   "git-delta" \
-  "bat"
-
-brew install --head "luajit" "neovim"
-
-brew tap homebrew/cask-fonts
+  "bat" \
+  "neovim"
 
 brew install --cask \
-  "docker" \
   "font-fira-code"
