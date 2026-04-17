@@ -22,7 +22,6 @@ brew install \
   "intellij-idea-ce" \
   "jid" \
   "jq" \
-  "kitty" \
   "kubectl" \
   "less" \
   "luarocks" \

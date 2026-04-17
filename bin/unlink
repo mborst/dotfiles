@@ -1,15 +1,10 @@
 #!/bin/bash
 
-files=(
-  "ideavimrc"
-  "gitconfig"
-)
+echo "unlinking ideavimrc"
+rm -f "${HOME}/.ideavimrc"
 
-for FILE in "${files[@]}"
-do
-  echo "unlinking ${FILE}"
-  rm -f "${HOME}/.${FILE}"
-done
+echo "unlinking gitconfig"
+rm -f "${HOME}/.gitconfig"
 
 rm -f "${HOME}/.zshenv"
 
@@ -18,5 +13,6 @@ rm -f "${DOTFILES}/nvim/pack/submodules/start/fzf"
 NVIM_CONFIG_PATH=~/.config/nvim
 rm -rf "${NVIM_CONFIG_PATH}"
 
-KITTY_CONFIG_PATH=~/.config/kitty
-rm -rf "${KITTY_CONFIG_PATH}"
+GHOSTTY_CONFIG_PATH="${HOME}/Library/Application Support/com.mitchellh.ghostty/config"
+echo "unlinking ghostty/config"
+rm -f "${GHOSTTY_CONFIG_PATH}"

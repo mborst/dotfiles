@@ -61,10 +61,6 @@ let g:neomake_open_list=2
 nnoremap tnm :NeomakeToggle<CR>
 let g:neomake_python_enabled_makers = ['python', 'flake8']
 
-lua << EOF
-require('kitty-scrollback').setup()
-EOF
-
 " LSP
 lua << EOF
 require'lsp'

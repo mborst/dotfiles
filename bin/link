@@ -1,18 +1,16 @@
-#!/bin/bash -eu
+#!/bin/bash -u
 
 DOTFILES_BIN="$(dirname "$(greadlink -f "$0")")"
 DOTFILES="$(dirname "${DOTFILES_BIN}")"
 
-files=(
-  "ideavimrc"
-  "gitconfig"
-)
+echo "linking ideavimrc"
+ln -s "${DOTFILES}/ideavimrc" "${HOME}/.ideavimrc"
 
-for FILE in "${files[@]}"
-do
-  echo "linking ${FILE}"
-  ln -s "${DOTFILES}/${FILE}" "${HOME}/.${FILE}"
-done
+echo "linking gitconfig"
+ln -s "${DOTFILES}/gitconfig" "${HOME}/.gitconfig"
+
+echo "linking tmux.conf"
+ln -s "${DOTFILES}/tmux.conf" "${HOME}/.tmux.conf"
 
 echo "ZDOTDIR=${DOTFILES}/zsh" > "${HOME}/.zshenv"
 
@@ -21,8 +19,10 @@ ln -s /usr/local/opt/fzf/plugin "${DOTFILES}/nvim/pack/submodules/start/fzf"
 NVIM_CONFIG_PATH=~/.config/nvim
 ln -s "${DOTFILES}/nvim" "${NVIM_CONFIG_PATH}"
 
-KITTY_CONFIG_PATH=~/.config/kitty
-ln -s "${DOTFILES}/kitty" "${KITTY_CONFIG_PATH}"
+GHOSTTY_CONFIG_PATH="${HOME}/Library/Application Support/com.mitchellh.ghostty/config"
+echo "linking ghostty/config"
+mkdir -p "$(dirname "${GHOSTTY_CONFIG_PATH}")"
+ln -s "${DOTFILES}/ghostty/config" "${GHOSTTY_CONFIG_PATH}"
 
 BAT_CONFIG_PATH=$(bat --config-file)
 mkdir --parents "$(dirname "${BAT_CONFIG_PATH}")"
