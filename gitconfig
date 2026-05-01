@@ -15,15 +15,24 @@
 
 [merge]
   tool = vimdiff
+  conflictstyle = zdiff3
+
 [mergetool]
   prompt = true
+
 [mergetool "vimdiff"]
   cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
 [diff]
   tool = vimrdiff
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
+
 [difftool]
   prompt = false
+
 [difftool "vimdiff"]
   cmd = nvim -d $LOCAL $REMOTE
 

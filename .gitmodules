@@ -112,9 +112,9 @@
 [submodule "nvim/pack/submodules/start/plenary"]
 	path = nvim/pack/submodules/start/plenary
 	url = git@github.com:nvim-lua/plenary.nvim.git
-[submodule "nvim/pack/submodules/start/gitgutter"]
-	path = nvim/pack/submodules/start/gitgutter
-	url = git@github.com:airblade/vim-gitgutter.git
 [submodule "nvim/pack/submodules/start/tokyonight"]
 	path = nvim/pack/submodules/start/tokyonight
 	url = git@github.com:folke/tokyonight.nvim.git
+[submodule "nvim/pack/submodules/start/slime"]
+	path = nvim/pack/submodules/start/slime
+	url = git@github.com:jpalardy/vim-slime.git

@@ -1,6 +1,4 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Delete all hidden buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! custom#DeleteHiddenBuffers()
   let l:tpbl=[]
   let l:closed = 0
@@ -26,7 +24,6 @@ endfunction
 "       :vimgrep /def/ *.rb
 "   2. Issue QuickFixOpenAll command
 "       :QuickFixOpenAll
-
 function! custom#QuickFixOpenAll()
     if empty(getqflist())
         return
@@ -35,8 +32,24 @@ function! custom#QuickFixOpenAll()
     for d in getqflist()
         let s:curr_val = bufname(d.bufnr)
         if (s:curr_val != s:prev_val)
-            exec "edit " . s:curr_val
+          execute "edit " . fnameescape(s:curr_val)
         endif
         let s:prev_val = s:curr_val
     endfor
+endfunction
+
+" Convert inline yaml into proper yaml for human editing, e.g. for kubectl edit
+function! custom#ConvertYamlKeys(keys)
+  let l:expr = join(map(copy(a:keys),
+        \ {_, k -> '.data["'.k.'"] = (.data["'.k.'"] | from_yaml)'}), ' | ')
+
+  let l:cmd = "yq eval -I2 -P '" . l:expr . "' -"
+  let l:output = system(l:cmd, join(getline(1, '$'), "\n"))
+
+  if v:shell_error
+    echoerr "yq failed"
+    return
+  endif
+
+  call setline(1, split(l:output, "\n"))
 endfunction

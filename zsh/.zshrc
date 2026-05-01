@@ -47,6 +47,7 @@ path=(
   "$HOME/bin"
   "$HOME/.local/bin"
   "$HOME/.cargo/bin"
+  "${HOMEBREW_DIR}/opt/rustup/bin"
   "$HOME/.yarn/bin"
   "$HOME/go/bin"
   "${HOMEBREW_BIN}"

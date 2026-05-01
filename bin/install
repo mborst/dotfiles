@@ -39,7 +39,20 @@ brew install \
   "zsh-syntax-highlighting" \
   "git-delta" \
   "bat" \
-  "neovim"
+  "neovim" \
+  "kotlin-language-server" \
+  "pyright"
 
 brew install --cask \
   "font-fira-code"
+
+# rust-analyzer ships with rustup; install via rustup if available so it tracks
+# the active toolchain. Symlink the rustup proxy under the underscored name
+# expected by lspconfig/nvim.
+if command -v rustup >/dev/null 2>&1; then
+  rustup component add rust-analyzer
+  mkdir -p "$HOME/.local/bin"
+  ln -sf "$(rustup which rust-analyzer)" "$HOME/.local/bin/rust_analyzer"
+else
+  echo "rustup not found; skipping rust-analyzer install. Install rustup first if you want Rust LSP."
+fi

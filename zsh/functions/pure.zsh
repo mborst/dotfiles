@@ -132,16 +132,16 @@ prompt_pure_preprompt_render() {
 	# check that no command is currently running, the preprompt will otherwise be rendered in the wrong place
 	[[ -n ${prompt_pure_cmd_timestamp+x} && "$1" != "precmd" ]] && return
 
-	# set color for git branch/dirty status, change color if dirty checking has been delayed
-	local git_color=242
-	[[ -n ${prompt_pure_git_last_dirty_check_timestamp+x} ]] && git_color=red
+	# Git prompt info disabled: avoid any git/vcs work while rendering the prompt.
+	# local git_color=242
+	# [[ -n ${prompt_pure_git_last_dirty_check_timestamp+x} ]] && git_color=red
 
 	# construct preprompt, beginning with path
 	local preprompt="%F{blue}%~%f"
-	# git info
-	preprompt+="%F{$git_color}${vcs_info_msg_0_}${prompt_pure_git_dirty}%f"
-	# git pull/push arrows
-	preprompt+="%F{cyan}${prompt_pure_git_arrows}%f"
+	# git info disabled
+	# preprompt+="%F{$git_color}${vcs_info_msg_0_}${prompt_pure_git_dirty}%f"
+	# git pull/push arrows disabled
+	# preprompt+="%F{cyan}${prompt_pure_git_arrows}%f"
 	# username and machine if applicable
 	preprompt+=$prompt_pure_username
 	# execution time
@@ -216,17 +216,17 @@ prompt_pure_precmd() {
 	# with the initial preprompt rendering
 	prompt_pure_cmd_timestamp=
 
-	# check for git arrows
-	prompt_pure_check_git_arrows
+	# Git prompt info disabled: do not run git/vcs checks during prompt rendering.
+	# prompt_pure_check_git_arrows
 
 	# shows the full path in the title
 	prompt_pure_set_title 'expand-prompt' '%~'
 
-	# get vcs info
-	vcs_info
+	# vcs_info disabled because it may invoke git.
+	# vcs_info
 
-	# preform async git dirty check and fetch
-	prompt_pure_async_tasks
+	# async git dirty check/fetch disabled.
+	# prompt_pure_async_tasks
 
 	# print the preprompt
 	prompt_pure_preprompt_render "precmd"
@@ -335,20 +335,21 @@ prompt_pure_setup() {
 	zmodload zsh/parameter
 
 	autoload -Uz add-zsh-hook
-	autoload -Uz vcs_info
-	autoload -Uz async && async
+	# Git prompt info disabled: vcs_info and async git jobs are intentionally not initialized.
+	# autoload -Uz vcs_info
+	# autoload -Uz async && async
 
 	add-zsh-hook precmd prompt_pure_precmd
 	add-zsh-hook preexec prompt_pure_preexec
 
-	zstyle ':vcs_info:*' enable git
-	zstyle ':vcs_info:*' use-simple true
+	# zstyle ':vcs_info:*' enable git
+	# zstyle ':vcs_info:*' use-simple true
 	# only export two msg variables from vcs_info
-	zstyle ':vcs_info:*' max-exports 2
+	# zstyle ':vcs_info:*' max-exports 2
 	# vcs_info_msg_0_ = ' %b' (for branch)
 	# vcs_info_msg_1_ = 'x%R' git top level (%R), x-prefix prevents creation of a named path (AUTO_NAME_DIRS)
-	zstyle ':vcs_info:git*' formats ' %b' 'x%R'
-	zstyle ':vcs_info:git*' actionformats ' %b|%a' 'x%R'
+	# zstyle ':vcs_info:git*' formats ' %b' 'x%R'
+	# zstyle ':vcs_info:git*' actionformats ' %b|%a' 'x%R'
 
 	# if the user has not registered a custom zle widget for clear-screen,
 	# override the builtin one so that the preprompt is displayed correctly when
