@@ -22,8 +22,6 @@ map <leader>N <Plug>QfCprevious
 let g:qf_loclist_window_bottom = 0
 let g:qf_window_bottom = 0
 
-" Annoying with Neomake, but only on Vim?!
-" Even with let `g:neomake_open_list = 2` !
 let g:qf_auto_open_quickfix = 0
 let g:qf_auto_open_loclist = 0
 
@@ -43,12 +41,6 @@ command! -bang -nargs=* Rg
 " fugitive
 nnoremap <leader>gl :Git log --oneline -20<CR>
 let g:fzf_lsp_timeout=10000
-
-" NEOMAKE
-let g:neomake_open_list=2
-"call neomake#configure#automake('w', 1000)
-nnoremap tnm :NeomakeToggle<CR>
-let g:neomake_python_enabled_makers = ['python', 'flake8']
 
 " LSP
 lua << EOF

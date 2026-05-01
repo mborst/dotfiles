@@ -7,9 +7,6 @@
 [submodule "nvim/pack/submodules/start/surround"]
 	path = nvim/pack/submodules/start/surround
 	url = git@github.com:tpope/vim-surround
-[submodule "nvim/pack/submodules/start/neomake"]
-	path = nvim/pack/submodules/start/neomake
-	url = git@github.com:neomake/neomake.git
 [submodule "nvim/pack/submodules/start/repeat"]
 	path = nvim/pack/submodules/start/repeat
 	url = git@github.com:tpope/vim-repeat.git
