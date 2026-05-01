@@ -16,15 +16,9 @@
 [submodule "nvim/pack/submodules/start/qf"]
 	path = nvim/pack/submodules/start/qf
 	url = git@github.com:romainl/vim-qf.git
-[submodule "nvim/pack/submodules/start/mundo"]
-	path = nvim/pack/submodules/start/mundo
-	url = git@github.com:simnalamburt/vim-mundo.git
 [submodule "nvim/pack/submodules/start/fzf"]
 	path = nvim/pack/submodules/start/fzf.vim
 	url = git@github.com:junegunn/fzf.vim.git
-[submodule "nvim/pack/submodules/start/nrun"]
-	path = nvim/pack/submodules/start/nrun
-	url = git@github.com:jaawerth/nrun.vim.git
 [submodule "nvim/pack/submodules/start/neoformat"]
 	path = nvim/pack/submodules/start/neoformat
 	url = git@github.com:sbdchd/neoformat.git
@@ -37,9 +31,6 @@
 [submodule "nvim/pack/submodules/start/treesitter"]
 	path = nvim/pack/submodules/start/treesitter
 	url = git@github.com:nvim-treesitter/nvim-treesitter.git
-[submodule "nvim/pack/submodules/start/zenburn"]
-	path = nvim/pack/submodules/start/zenburn
-	url = git@github.com:jnurmine/Zenburn.git
 [submodule "nvim/nvim/pack/submodules/start/cmp-nvim-lsp"]
 	path = nvim/nvim/pack/submodules/start/cmp-nvim-lsp
 	url = git@github.com:hrsh7th/cmp-nvim-lsp
