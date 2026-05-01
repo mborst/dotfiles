@@ -34,10 +34,6 @@ augroup rainbow_langs
 augroup END
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 
-" 'terryma/vim-expand-region'
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-
 " fzf
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>b :Buffers<CR>
