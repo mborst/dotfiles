@@ -6,7 +6,8 @@ require("nvim-treesitter.configs").setup({
     enable = true,
     keymaps = {
       -- start selection of the smallest treesitter node under the cursor
-      init_selection = "<leader>v",
+      -- (avoid <leader>v which is bound to :vsplit)
+      init_selection = "gnn",
       -- in visual mode: grow / shrink selection by treesitter node
       node_incremental = "v",
       node_decremental = "V",

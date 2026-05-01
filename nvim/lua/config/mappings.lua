@@ -12,9 +12,9 @@ map("c", "<C-p>", "<Up>")
 map("c", "<C-n>", "<Down>")
 
 -- Toggle highlight of search results
-map("n", "<C-n>", function()
+map("n", "<leader>hl", function()
   vim.opt.hlsearch = not vim.opt.hlsearch:get()
-end, { silent = true })
+end, { silent = true, desc = "Toggle hlsearch" })
 
 -- Find and replace word under cursor
 map("n", "<leader>sr", custom.substitute_cword)
