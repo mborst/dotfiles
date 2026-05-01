@@ -295,9 +295,9 @@ function M.lsp_document_symbols()
   end)
 end
 
-function M.diagnostics_all()
+local function diagnostics_to_items(diags)
   local items = {}
-  for _, d in ipairs(vim.diagnostic.get(nil)) do
+  for _, d in ipairs(diags) do
     local filename = vim.api.nvim_buf_get_name(d.bufnr)
     if filename ~= "" then
       local sev = ({ "ERROR", "WARN", "INFO", "HINT" })[d.severity] or "?"
@@ -309,17 +309,129 @@ function M.diagnostics_all()
       })
     end
   end
-  pick_locations(items, "No diagnostics")
+  return items
+end
+
+function M.diagnostics_all()
+  pick_locations(diagnostics_to_items(vim.diagnostic.get(nil)), "No diagnostics")
+end
+
+function M.diagnostics_buffer()
+  pick_locations(diagnostics_to_items(vim.diagnostic.get(0)), "No diagnostics in buffer")
+end
+
+-- Generic location-list picker for textDocument/{definition,implementation,...}.
+-- Auto-jumps when there's exactly one result, matching vim.lsp.buf.* behavior.
+local function lsp_locations(method, no_results_msg)
+  local params = vim.lsp.util.make_position_params(0, "utf-8")
+  vim.lsp.buf_request_all(0, method, params, function(results)
+    local locs = {}
+    for _, r in pairs(results or {}) do
+      if r.result then
+        local list = vim.islist(r.result) and r.result or { r.result }
+        vim.list_extend(locs, list)
+      end
+    end
+    vim.schedule(function()
+      if #locs == 0 then
+        vim.notify(no_results_msg, vim.log.levels.WARN)
+      elseif #locs == 1 then
+        vim.lsp.util.show_document(locs[1], "utf-8", { focus = true })
+      else
+        pick_locations(vim.lsp.util.locations_to_items(locs, "utf-8"), no_results_msg)
+      end
+    end)
+  end)
+end
+
+function M.lsp_definitions()
+  lsp_locations("textDocument/definition", "No definitions")
+end
+
+function M.lsp_implementations()
+  lsp_locations("textDocument/implementation", "No implementations")
+end
+
+function M.lsp_type_definitions()
+  lsp_locations("textDocument/typeDefinition", "No type definitions")
+end
+
+function M.workspace_symbols(query)
+  query = query or ""
+  vim.lsp.buf_request_all(0, "workspace/symbol", { query = query }, function(results)
+    local items = {}
+    for _, r in pairs(results or {}) do
+      if r.result then
+        for _, sym in ipairs(r.result) do
+          local kind = vim.lsp.protocol.SymbolKind[sym.kind] or "?"
+          local loc = sym.location
+          if loc then
+            local fname = vim.uri_to_fname(loc.uri)
+            local short = vim.fn.fnamemodify(fname, ":~:.")
+            table.insert(items, {
+              filename = fname,
+              lnum = loc.range.start.line + 1,
+              col = loc.range.start.character + 1,
+              text = string.format("[%s] %s  %s", kind, sym.name, short),
+            })
+          end
+        end
+      end
+    end
+    vim.schedule(function()
+      pick_locations(items, "No workspace symbols")
+    end)
+  end)
+end
+
+-- ----- mappings picker -----
+
+function M.mappings()
+  local items = {}
+  local seen = {}
+  local function add(m, scope)
+    local key = m.lhs .. "\0" .. (m.buffer and "b" or "g")
+    if seen[key] then return end
+    seen[key] = true
+    local desc = m.desc
+      or (type(m.rhs) == "string" and m.rhs ~= "" and m.rhs)
+      or (m.callback and "<lua callback>")
+      or ""
+    desc = desc:gsub("\n", " ")
+    table.insert(items, string.format("%s\t%s\t%s", scope, m.lhs, desc))
+  end
+  for _, m in ipairs(vim.api.nvim_buf_get_keymap(0, "n")) do
+    add(m, "buf")
+  end
+  for _, m in ipairs(vim.api.nvim_get_keymap("n")) do
+    add(m, "glb")
+  end
+  if #items == 0 then
+    vim.notify("No normal-mode mappings", vim.log.levels.WARN)
+    return
+  end
+  M.run(items_to_source(items), "--delimiter='\\t' --with-nth=1,2,3", function(lines)
+    local lhs = lines[1]:match("^[^\t]+\t([^\t]+)\t")
+    if lhs then
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(lhs, true, true, true), "m", false)
+    end
+  end)
 end
 
 -- ----- setup -----
 
 function M.setup()
   local map = vim.keymap.set
+  local ucmd = vim.api.nvim_create_user_command
 
-  vim.api.nvim_create_user_command("Rg", function(opts)
-    M.rg(opts.args)
-  end, { nargs = "*", desc = "Ripgrep + fzf" })
+  ucmd("Rg", function(opts) M.rg(opts.args) end, { nargs = "*", desc = "Ripgrep + fzf" })
+  ucmd("Mappings", M.mappings, { desc = "fzf: normal-mode mappings" })
+  ucmd("Symbols", function(opts) M.workspace_symbols(opts.args) end,
+    { nargs = "*", desc = "fzf: LSP workspace symbols" })
+  ucmd("Definitions", M.lsp_definitions, { desc = "fzf: LSP definitions" })
+  ucmd("Implementations", M.lsp_implementations, { desc = "fzf: LSP implementations" })
+  ucmd("TypeDefinitions", M.lsp_type_definitions, { desc = "fzf: LSP type definitions" })
+  ucmd("Diagnostics", M.diagnostics_buffer, { desc = "fzf: diagnostics (current buffer)" })
 
   map("n", "<leader>f", M.files, { desc = "fzf: files" })
   map("n", "<leader>b", M.buffers, { desc = "fzf: buffers" })
