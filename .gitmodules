@@ -13,9 +13,6 @@
 [submodule "nvim/pack/submodules/start/qf"]
 	path = nvim/pack/submodules/start/qf
 	url = git@github.com:romainl/vim-qf.git
-[submodule "nvim/pack/submodules/start/fzf"]
-	path = nvim/pack/submodules/start/fzf.vim
-	url = git@github.com:junegunn/fzf.vim.git
 [submodule "nvim/pack/submodules/start/neoformat"]
 	path = nvim/pack/submodules/start/neoformat
 	url = git@github.com:sbdchd/neoformat.git
@@ -52,9 +49,6 @@
 [submodule "nvim/pack/submodules/start/treesitter-textobjects"]
 	path = nvim/pack/submodules/start/treesitter-textobjects
 	url = git@github.com:nvim-treesitter/nvim-treesitter-textobjects
-[submodule "nvim/pack/submodules/start/fzf-lsp"]
-	path = nvim/pack/submodules/start/fzf-lsp
-	url = git@github.com:gfanto/fzf-lsp.nvim.git
 [submodule "nvim/pack/submodules/start/plenary"]
 	path = nvim/pack/submodules/start/plenary
 	url = git@github.com:nvim-lua/plenary.nvim.git

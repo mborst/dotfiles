@@ -25,22 +25,8 @@ let g:qf_window_bottom = 0
 let g:qf_auto_open_quickfix = 0
 let g:qf_auto_open_loclist = 0
 
-" fzf
-nnoremap <leader>f :Files<CR>
-nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>w :Windows<CR>
-nnoremap <leader>: :History:<CR>
-nnoremap <leader>ls :DocumentSymbols
-nnoremap <leader>ld :DiagnosticsAll<CR>
-nnoremap <leader>lr :References<CR>
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case --hidden --glob ''!.git/'' -- '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
-
 " fugitive
 nnoremap <leader>gl :Git log --oneline -20<CR>
-let g:fzf_lsp_timeout=10000
 
 " LSP
 lua << EOF
