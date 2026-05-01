@@ -25,9 +25,6 @@
 [submodule "nvim/pack/submodules/start/nrun"]
 	path = nvim/pack/submodules/start/nrun
 	url = git@github.com:jaawerth/nrun.vim.git
-[submodule "nvim/pack/submodules/start/rust"]
-	path = nvim/pack/submodules/start/rust
-	url = git@github.com:rust-lang/rust.vim.git
 [submodule "nvim/pack/submodules/start/neoformat"]
 	path = nvim/pack/submodules/start/neoformat
 	url = git@github.com:sbdchd/neoformat.git
