@@ -31,12 +31,6 @@
 [submodule "nvim/pack/submodules/start/neoformat"]
 	path = nvim/pack/submodules/start/neoformat
 	url = git@github.com:sbdchd/neoformat.git
-[submodule "nvim/pack/submodules/start/commentary"]
-	path = nvim/pack/submodules/start/commentary
-	url = git@github.com:tpope/vim-commentary
-[submodule "nvim/pack/submodules/start/unimpaired"]
-	path = nvim/pack/submodules/start/unimpaired
-	url = git@github.com:tpope/vim-unimpaired
 [submodule "nvim/pack/submodules/start/rainbow_parentheses.vim"]
 	path = nvim/pack/submodules/start/rainbow_parentheses.vim
 	url = git@github.com:junegunn/rainbow_parentheses.vim
