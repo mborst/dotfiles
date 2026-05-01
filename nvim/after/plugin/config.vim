@@ -27,13 +27,6 @@ let g:qf_window_bottom = 0
 let g:qf_auto_open_quickfix = 0
 let g:qf_auto_open_loclist = 0
 
-" 'junegunn/rainbow_parentheses.vim'
-augroup rainbow_langs
-  autocmd!
-  autocmd FileType go,javascript,lisp,clojure,scheme,vim,sh,terraform RainbowParentheses
-augroup END
-let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
-
 " fzf
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>b :Buffers<CR>

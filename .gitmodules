@@ -28,9 +28,6 @@
 [submodule "nvim/pack/submodules/start/neoformat"]
 	path = nvim/pack/submodules/start/neoformat
 	url = git@github.com:sbdchd/neoformat.git
-[submodule "nvim/pack/submodules/start/rainbow_parentheses.vim"]
-	path = nvim/pack/submodules/start/rainbow_parentheses.vim
-	url = git@github.com:junegunn/rainbow_parentheses.vim
 [submodule "nvim/pack/submodules/start/lspconfig"]
 	path = nvim/pack/submodules/start/lspconfig
 	url = git@github.com:neovim/nvim-lspconfig.git
