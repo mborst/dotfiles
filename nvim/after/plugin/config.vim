@@ -60,7 +60,7 @@ EOF
 " nvim-treesitter plugin now only manages parser installation.
 
 set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
+set foldexpr=v:lua.vim.treesitter.foldexpr()
 
 " Completion
 lua << EOF
