@@ -4,13 +4,10 @@ local g = vim.g
 -- General settings
 opt.rtp:append("/opt/homebrew/opt/fzf")
 
-opt.lazyredraw = true
-
 opt.ignorecase = true
 opt.smartcase = true
 
 opt.formatoptions = "crqM1j"
-opt.encoding = "utf-8"
 opt.number = true
 opt.ruler = false
 opt.wrap = false
@@ -37,10 +34,8 @@ opt.expandtab = true
 opt.smartindent = true
 opt.cindent = false
 
-opt.backspace = "2"
 opt.mouse = "a"
 
-opt.wildmenu = true
 opt.wildmode = { "longest", "list" }
 
 opt.autochdir = false
