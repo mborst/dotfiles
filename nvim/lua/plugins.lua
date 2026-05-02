@@ -26,7 +26,8 @@ vim.pack.add({
   { src = "https://github.com/stevearc/quicker.nvim" },
 
   -- treesitter (using the new 'main' branch rewrite; parser-only, no
-  -- legacy configs.setup API).
+  -- legacy configs.setup API). Queries live under <plugin>/runtime/
+  -- which is NOT on rtp by default; we add it manually below.
   { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
   { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" },
 
@@ -40,3 +41,14 @@ vim.pack.add({
   { src = "https://github.com/hrsh7th/cmp-path" },
   { src = "https://github.com/hrsh7th/cmp-cmdline" },
 })
+
+-- nvim-treesitter main branch ships its bundled queries under
+-- <plugin>/runtime/queries/, not <plugin>/queries/. vim.pack puts only
+-- <plugin>/ on rtp, so vim.treesitter.query.get() can't find them.
+-- Append the runtime dir for both treesitter plugins.
+for _, name in ipairs({ "nvim-treesitter", "nvim-treesitter-textobjects" }) do
+  local rtp_extra = vim.fn.stdpath("data") .. "/site/pack/core/opt/" .. name .. "/runtime"
+  if vim.fn.isdirectory(rtp_extra) == 1 then
+    vim.opt.rtp:append(rtp_extra)
+  end
+end
