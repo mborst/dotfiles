@@ -39,7 +39,4 @@ vim.pack.add({
   { src = "https://github.com/hrsh7th/cmp-buffer" },
   { src = "https://github.com/hrsh7th/cmp-path" },
   { src = "https://github.com/hrsh7th/cmp-cmdline" },
-
-  -- misc lua
-  { src = "https://github.com/nvim-lua/plenary.nvim" },
 })
