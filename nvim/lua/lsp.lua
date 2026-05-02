@@ -10,9 +10,22 @@ vim.diagnostic.config({
   update_in_insert = false,
 })
 
--- Per-server settings and command overrides.
-local settings = {
-  rust_analyzer = {
+-- Shared overrides for every server: cmp capabilities + verbose trace.
+-- Per-server defaults (cmd, filetypes, root_markers, on_attach helpers)
+-- come from nvim-lspconfig's lsp/<name>.lua files; vim.lsp.config below
+-- only adds what's different from those defaults.
+vim.lsp.config("*", {
+  capabilities = capabilities,
+  trace = "messages",
+})
+
+-- gopls: Datadog-internal wrapper instead of the upstream binary.
+vim.lsp.config("gopls", { cmd = { "dd-gopls" } })
+
+-- rust_analyzer: project preferences. Deep-merges with the lspconfig
+-- defaults (which set rust-analyzer.lens.*).
+vim.lsp.config("rust_analyzer", {
+  settings = {
     ["rust-analyzer"] = {
       imports = {
         granularity = { group = "module" },
@@ -24,32 +37,9 @@ local settings = {
       procMacro = { enable = true },
     },
   },
-}
+})
 
-local cmds = {
-  gopls = { "dd-gopls" },
-  kotlin_language_server = { "kotlin-language-server" },
-  pyright = { "pyright-langserver", "--stdio" },
-}
-
-local filetypes = {
-  gopls = { "go", "gomod", "gowork" },
-}
-
--- Shared capabilities for every server.
-vim.lsp.config("*", { capabilities = capabilities })
-
--- Per-server config + enable.
-local servers = { "gopls", "pyright", "kotlin_language_server", "rust_analyzer" }
-for _, lsp in ipairs(servers) do
-  vim.lsp.config(lsp, {
-    cmd = cmds[lsp] or { lsp },
-    filetypes = filetypes[lsp],
-    settings = settings[lsp],
-    trace = "messages",
-  })
-  vim.lsp.enable(lsp)
-end
+vim.lsp.enable({ "gopls", "pyright", "kotlin_language_server", "rust_analyzer" })
 
 -- Buffer-local keymaps and behavior, attached once via LspAttach.
 vim.api.nvim_create_autocmd("LspAttach", {
