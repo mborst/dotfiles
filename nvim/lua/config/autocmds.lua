@@ -1,6 +1,16 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
+-- Re-apply custom Comment highlight on every :colorscheme change.
+local my_colors = augroup("MyColors", { clear = true })
+autocmd("ColorScheme", {
+  group = my_colors,
+  pattern = "*",
+  callback = function()
+    vim.cmd("highlight Comment ctermbg=NONE ctermfg=101 cterm=NONE guibg=NONE guifg=#87875f gui=NONE")
+  end,
+})
+
 local smart_swapfile = augroup("SmartSwapfile", { clear = true })
 autocmd({ "BufReadPost", "BufNewFile" }, {
   group = smart_swapfile,

@@ -4,6 +4,9 @@ local g = vim.g
 -- General settings
 opt.rtp:append("/opt/homebrew/opt/fzf")
 
+opt.termguicolors = true
+opt.background = "dark"
+
 opt.ignorecase = true
 opt.smartcase = true
 
@@ -13,10 +16,14 @@ opt.ruler = false
 opt.wrap = false
 opt.cursorline = true
 opt.cursorcolumn = true
-opt.colorcolumn = "+1"
+opt.textwidth = 100
+opt.colorcolumn = "100"
+opt.conceallevel = 0
 opt.scrolloff = 25
 opt.joinspaces = false
-opt.foldmethod = "syntax"
+-- Folds: treesitter-driven (built-in v:lua.vim.treesitter.foldexpr).
+opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 opt.foldenable = false
 opt.listchars = {
   eol = "¬",

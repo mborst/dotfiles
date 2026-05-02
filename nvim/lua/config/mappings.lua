@@ -1,6 +1,19 @@
 local map = vim.keymap.set
 local custom = require("custom")
 
+-- fugitive
+map("n", "<leader>gl", "<cmd>Git log --oneline -20<CR>", { silent = true, desc = "Git log (last 20)" })
+
+-- vim-qf (TODO: remove these along with romainl/vim-qf in step #8).
+map("", "<leader>l", "<Plug>QfLnext", {})
+map("", "<leader>L", "<Plug>QfLprevious", {})
+map("", "<leader>n", "<Plug>QfCnext", {})
+map("", "<leader>N", "<Plug>QfCprevious", {})
+vim.g.qf_loclist_window_bottom = 0
+vim.g.qf_window_bottom = 0
+vim.g.qf_auto_open_quickfix = 0
+vim.g.qf_auto_open_loclist = 0
+
 -- Smart way to move between splits
 map("n", "<C-j>", "<C-w>j", { silent = true })
 map("n", "<C-k>", "<C-w>k", { silent = true })
