@@ -9,7 +9,7 @@ require("config.filetypes")
 
 -- Colorscheme last so that the MyColors ColorScheme autocmd is already
 -- registered when tokyonight fires it.
-vim.cmd.colorscheme("tokyonight")
+vim.cmd.colorscheme("tokyonight-night")
 
 require("fzf").setup()
 require("quicker").setup({

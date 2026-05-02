@@ -46,6 +46,41 @@ local function items_to_source(items)
   return "cat " .. shellescape(tmp)
 end
 
+-- Read tokyonight's fzf flags (--color=..., --highlight-line, ...) from
+-- its extras/fzf/tokyonight_storm.sh, distributed with the colorscheme
+-- repo. Computed once at module load; falls back to empty string if not
+-- found (e.g. fresh nvim install before vim.pack has fetched the plugin).
+local function tokyonight_fzf_args()
+  -- Try common locations: vim.pack data dir first, then runtimepath.
+  local candidates = {
+    vim.fn.stdpath("data") .. "/site/pack/core/opt/tokyonight.nvim/extras/fzf/tokyonight_night.sh",
+  }
+  local rtp_hits = vim.api.nvim_get_runtime_file("extras/fzf/tokyonight_night.sh", false)
+  for _, p in ipairs(rtp_hits) do
+    table.insert(candidates, p)
+  end
+  local file
+  for _, p in ipairs(candidates) do
+    if vim.fn.filereadable(p) == 1 then
+      file = p
+      break
+    end
+  end
+  if not file then
+    return ""
+  end
+  local args = {}
+  for _, line in ipairs(vim.fn.readfile(file)) do
+    local flag = line:match("^%s*(%-%-%S+)")
+    if flag then
+      table.insert(args, flag)
+    end
+  end
+  return table.concat(args, " ")
+end
+
+local TOKYONIGHT_FZF = tokyonight_fzf_args()
+
 local PREVIEW_FILE_LINE = table.concat({
   "--preview",
   shellescape(
@@ -65,7 +100,8 @@ function M.run(source_cmd, fzf_args, on_select)
   -- Override --height/--layout from $FZF_DEFAULT_OPTS so fzf fills the
   -- entire floating window (user's shell may set e.g. '--height 30%' for
   -- terminal use, which would shrink fzf to a sliver of the float).
-  local base_args = "--height=100% --layout=reverse "
+  -- TOKYONIGHT_FZF supplies --color=... matching the editor colorscheme.
+  local base_args = "--height=100% --layout=reverse " .. TOKYONIGHT_FZF .. " "
   local cmd
   if source_cmd and source_cmd ~= "" then
     cmd = string.format("(%s) | fzf %s%s > %s", source_cmd, base_args, fzf_args, out)
@@ -80,6 +116,9 @@ function M.run(source_cmd, fzf_args, on_select)
   -- and survives subsequent resizes. jobstart{term=true} appears to
   -- snapshot 80x24 in some cases (observed: fzf rendering in only a
   -- corner of the float).
+  -- Force 24-bit color in the pty so bat (used for previews) doesn't
+  -- downgrade to 256-color and dither tokyonight RGB.
+  cmd = "COLORTERM=truecolor " .. cmd
   -- :terminal cmdline parsing expands % (current file) and # (alt file).
   -- Our cmd contains literal '%' (e.g. --preview-window=right,60%), so
   -- escape both before handing to ex-cmd.

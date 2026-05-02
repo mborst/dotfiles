@@ -14,8 +14,6 @@ ln -s "${DOTFILES}/tmux.conf" "${HOME}/.tmux.conf"
 
 echo "ZDOTDIR=${DOTFILES}/zsh" > "${HOME}/.zshenv"
 
-ln -s /usr/local/opt/fzf/plugin "${DOTFILES}/nvim/pack/submodules/start/fzf"
-
 NVIM_CONFIG_PATH=~/.config/nvim
 ln -s "${DOTFILES}/nvim" "${NVIM_CONFIG_PATH}"
 
@@ -27,5 +25,23 @@ ln -s "${DOTFILES}/ghostty/config" "${GHOSTTY_CONFIG_PATH}"
 BAT_CONFIG_PATH=$(bat --config-file)
 mkdir --parents "$(dirname "${BAT_CONFIG_PATH}")"
 ln -s "${DOTFILES}/bat.conf" "${BAT_CONFIG_PATH}"
+
+# Install tokyonight tmTheme for bat to match the editor colors. The theme
+# file ships with folke/tokyonight.nvim under nvim's vim.pack data dir, so
+# bootstrap nvim's plugins headlessly first if they aren't there yet.
+NVIM_PACK_OPT="${HOME}/.local/share/nvim/site/pack/core/opt"
+if [[ ! -d "${NVIM_PACK_OPT}/tokyonight.nvim" ]]; then
+  echo "bootstrapping nvim plugins via vim.pack"
+  nvim --headless "+qa" 2>/dev/null || true
+fi
+
+TN_THEME="${NVIM_PACK_OPT}/tokyonight.nvim/extras/sublime/tokyonight_night.tmTheme"
+if [[ -f "${TN_THEME}" ]]; then
+  echo "linking tokyonight bat theme"
+  BAT_THEMES_DIR="$(dirname "${BAT_CONFIG_PATH}")/themes"
+  mkdir -p "${BAT_THEMES_DIR}"
+  ln -sf "${TN_THEME}" "${BAT_THEMES_DIR}/tokyonight_night.tmTheme"
+  bat cache --build >/dev/null
+fi
 
 mkdir -p "${HOME}/.cache/nvim/"{backups,swaps,undo}
