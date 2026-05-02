@@ -21,9 +21,9 @@ vim.pack.add({
   { src = "https://github.com/sbdchd/neoformat" },
   { src = "https://github.com/jpalardy/vim-slime" },
 
-  -- quickfix
-  -- TODO: remove with step #8 (replace with native qf or stevearc/quicker.nvim).
-  { src = "https://github.com/romainl/vim-qf" },
+  -- quickfix UX (line context, edit-in-place, file grouping). Quickfix
+  -- navigation itself uses native :cnext/:lnext mapped in mappings.lua.
+  { src = "https://github.com/stevearc/quicker.nvim" },
 
   -- treesitter (using the new 'main' branch rewrite; parser-only, no
   -- legacy configs.setup API).

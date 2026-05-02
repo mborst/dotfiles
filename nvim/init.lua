@@ -12,5 +12,13 @@ require("config.filetypes")
 vim.cmd.colorscheme("tokyonight")
 
 require("fzf").setup()
+require("quicker").setup({
+  -- quicker.nvim doesn't bind any keys by default. Map > / < inside
+  -- the qf buffer to grow / shrink the surrounding context.
+  keys = {
+    { ">", function() require("quicker").expand({ before = 2, after = 2, add_to_existing = true }) end, desc = "Expand qf context" },
+    { "<", function() require("quicker").collapse() end, desc = "Collapse qf context" },
+  },
+})
 require("lsp")
 require("completion")

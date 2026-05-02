@@ -4,15 +4,11 @@ local custom = require("custom")
 -- fugitive
 map("n", "<leader>gl", "<cmd>Git log --oneline -20<CR>", { silent = true, desc = "Git log (last 20)" })
 
--- vim-qf (TODO: remove these along with romainl/vim-qf in step #8).
-map("", "<leader>l", "<Plug>QfLnext", {})
-map("", "<leader>L", "<Plug>QfLprevious", {})
-map("", "<leader>n", "<Plug>QfCnext", {})
-map("", "<leader>N", "<Plug>QfCprevious", {})
-vim.g.qf_loclist_window_bottom = 0
-vim.g.qf_window_bottom = 0
-vim.g.qf_auto_open_quickfix = 0
-vim.g.qf_auto_open_loclist = 0
+-- Quickfix / location list navigation (was: vim-qf <Plug>Qf{L,C}{next,prev}).
+map("n", "<leader>l", "<cmd>lnext<CR>", { silent = true, desc = "Loclist: next" })
+map("n", "<leader>L", "<cmd>lprevious<CR>", { silent = true, desc = "Loclist: previous" })
+map("n", "<leader>n", "<cmd>cnext<CR>", { silent = true, desc = "Quickfix: next" })
+map("n", "<leader>N", "<cmd>cprevious<CR>", { silent = true, desc = "Quickfix: previous" })
 
 -- Smart way to move between splits
 map("n", "<C-j>", "<C-w>j", { silent = true })
