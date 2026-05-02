@@ -438,14 +438,14 @@ function M.setup()
   map("n", "<leader>w", M.windows, { desc = "fzf: windows" })
   map("n", "<leader>:", M.command_history, { desc = "fzf: command history" })
   map("n", "<leader>m", M.mappings, { desc = "fzf: mappings" })
-  map("n", "<leader>S", function() M.workspace_symbols("") end, { desc = "fzf: workspace symbols" })
-  map("n", "<leader>ls", M.lsp_document_symbols, { desc = "fzf: LSP document symbols" })
-  map("n", "<leader>ld", M.diagnostics_all, { desc = "fzf: all diagnostics" })
+
+  -- LSP family: only the ones where fzf adds value over built-in g*
+  -- mappings (grr, gri, grt, gO, gd, gD, etc.).
   map("n", "<leader>lr", M.lsp_references, { desc = "fzf: LSP references" })
-  map("n", "<leader>lD", M.lsp_definitions, { desc = "fzf: LSP definitions" })
-  map("n", "<leader>li", M.lsp_implementations, { desc = "fzf: LSP implementations" })
-  map("n", "<leader>lt", M.lsp_type_definitions, { desc = "fzf: LSP type definitions" })
-  map("n", "<leader>lb", M.diagnostics_buffer, { desc = "fzf: diagnostics (buffer)" })
+  map("n", "<leader>ls", M.lsp_document_symbols, { desc = "fzf: LSP document symbols" })
+  map("n", "<leader>lS", function() M.workspace_symbols("") end, { desc = "fzf: LSP workspace symbols" })
+  map("n", "<leader>ld", M.diagnostics_buffer, { desc = "fzf: diagnostics (current buffer)" })
+  map("n", "<leader>lD", M.diagnostics_all, { desc = "fzf: diagnostics (all buffers)" })
 end
 
 return M
