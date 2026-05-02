@@ -65,6 +65,23 @@ end, { silent = true, desc = "Copy current file path to clipboard" })
 -- Map aa to go to normal mode
 map("i", "aa", "<Esc>")
 
+-- Built-in snippet jumps (vim.snippet, nvim 0.10+).
+-- Tab / S-Tab jump forward / back when a snippet is active; fall through
+-- to the literal key otherwise so cmp's preset.insert keeps working.
+map({ "i", "s" }, "<Tab>", function()
+  if vim.snippet.active({ direction = 1 }) then
+    return "<cmd>lua vim.snippet.jump(1)<CR>"
+  end
+  return "<Tab>"
+end, { expr = true, silent = true })
+
+map({ "i", "s" }, "<S-Tab>", function()
+  if vim.snippet.active({ direction = -1 }) then
+    return "<cmd>lua vim.snippet.jump(-1)<CR>"
+  end
+  return "<S-Tab>"
+end, { expr = true, silent = true })
+
 -- Delete hidden buffers
 map("n", "dhb", custom.delete_hidden_buffers, {
   desc = "Delete hidden buffers",
