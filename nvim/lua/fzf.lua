@@ -117,8 +117,9 @@ function M.run(source_cmd, fzf_args, on_select)
   -- snapshot 80x24 in some cases (observed: fzf rendering in only a
   -- corner of the float).
   -- Force 24-bit color in the pty so bat (used for previews) doesn't
-  -- downgrade to 256-color and dither tokyonight RGB.
-  cmd = "COLORTERM=truecolor " .. cmd
+  -- downgrade to 256-color and dither tokyonight RGB. Use 'export' (not
+  -- a VAR=val command-prefix) because cmd starts with a subshell '(...)'.
+  cmd = "export COLORTERM=truecolor; " .. cmd
   -- :terminal cmdline parsing expands % (current file) and # (alt file).
   -- Our cmd contains literal '%' (e.g. --preview-window=right,60%), so
   -- escape both before handing to ex-cmd.
