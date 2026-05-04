@@ -10,11 +10,11 @@ map("n", "<leader>L", "<cmd>lprevious<CR>", { silent = true, desc = "Loclist: pr
 map("n", "<leader>n", "<cmd>cnext<CR>", { silent = true, desc = "Quickfix: next" })
 map("n", "<leader>N", "<cmd>cprevious<CR>", { silent = true, desc = "Quickfix: previous" })
 
--- Smart way to move between splits
-map("n", "<C-j>", "<C-w>j", { silent = true })
-map("n", "<C-k>", "<C-w>k", { silent = true })
-map("n", "<C-h>", "<C-w>h", { silent = true })
-map("n", "<C-l>", "<C-w>l", { silent = true })
+-- Smart way to move between splits (and tmux panes via vim-tmux-navigator)
+map("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>", { silent = true })
+map("n", "<C-j>", "<cmd>TmuxNavigateDown<cr>", { silent = true })
+map("n", "<C-k>", "<cmd>TmuxNavigateUp<cr>", { silent = true })
+map("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>", { silent = true })
 
 -- When history searching, use prefix for C-P and C-N
 map("c", "<C-p>", "<Up>")

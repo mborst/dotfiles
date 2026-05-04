@@ -17,6 +17,9 @@ vim.pack.add({
   -- ui / theme
   { src = "https://github.com/folke/tokyonight.nvim" },
 
+  -- tmux/vim unified navigation
+  { src = "https://github.com/christoomey/vim-tmux-navigator" },
+
   -- editing
   { src = "https://github.com/sbdchd/neoformat" },
   { src = "https://github.com/jpalardy/vim-slime" },
