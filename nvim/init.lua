@@ -3,6 +3,7 @@
 require("plugins")
 
 require("config.options")
+require("config.slime")
 require("config.mappings")
 require("config.autocmds")
 require("config.filetypes")
