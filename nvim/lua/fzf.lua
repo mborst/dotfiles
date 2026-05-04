@@ -264,11 +264,31 @@ function M.rg(query)
     "rg --column --line-number --no-heading --color=always --smart-case --hidden --glob '!.git/' -- %s",
     shellescape(query)
   )
-  local args = "--ansi --delimiter=: " .. PREVIEW_FILE_LINE
+  local args = "--multi --ansi --delimiter=: " .. PREVIEW_FILE_LINE
   M.run(rg, args, function(lines)
-    local file, lnum, col = lines[1]:match("^([^:]+):(%d+):(%d+):")
-    if file then
-      edit_at(file, tonumber(lnum), tonumber(col))
+    if #lines == 1 then
+      local file, lnum, col = lines[1]:match("^([^:]+):(%d+):(%d+):")
+      if file then
+        edit_at(file, tonumber(lnum), tonumber(col))
+      end
+      return
+    end
+    -- Multi-select: send all hits to the quickfix list and open it.
+    local items = {}
+    for _, line in ipairs(lines) do
+      local file, lnum, col, text = line:match("^([^:]+):(%d+):(%d+):(.*)$")
+      if file then
+        table.insert(items, {
+          filename = file,
+          lnum = tonumber(lnum),
+          col = tonumber(col),
+          text = text,
+        })
+      end
+    end
+    if #items > 0 then
+      vim.fn.setqflist({}, " ", { title = "Rg", items = items })
+      vim.cmd("copen")
     end
   end)
 end
