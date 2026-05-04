@@ -1,6 +1,17 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
+-- Start treesitter highlighting for any buffer whose filetype has an
+-- available parser. nvim-treesitter's 'main' branch only manages parser
+-- installation; it does not auto-enable highlighting. With LSP semantic
+-- tokens disabled in lsp.lua, treesitter is the sole syntax highlighter.
+autocmd("FileType", {
+  group = augroup("UserTreesitterStart", { clear = true }),
+  callback = function(args)
+    pcall(vim.treesitter.start, args.buf)
+  end,
+})
+
 -- Re-apply custom Comment highlight on every :colorscheme change.
 local my_colors = augroup("MyColors", { clear = true })
 autocmd("ColorScheme", {

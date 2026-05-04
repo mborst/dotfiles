@@ -51,6 +51,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
       return
     end
 
+    -- Disable LSP semantic tokens; rely on treesitter for highlighting.
+    -- Avoids semantic tokens stomping on treesitter captures and reduces
+    -- redraw cost on large buffers.
+    client.server_capabilities.semanticTokensProvider = nil
+
     local function map(mode, lhs, rhs, desc)
       vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, silent = true, noremap = true, desc = desc })
     end
