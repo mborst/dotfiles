@@ -184,7 +184,11 @@ KEYTIMEOUT=30
 zmodload zsh/complist
 
 autoload -Uz compinit
-compinit
+if [[ -n "$(find ~/.zcompdump -mtime +1 2>/dev/null)" ]]; then
+  compinit
+else
+  compinit -C
+fi
 zstyle :compinstall filename '${ZDOTDIR}/.zshrc'
 
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
