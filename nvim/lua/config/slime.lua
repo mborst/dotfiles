@@ -10,3 +10,6 @@ vim.g.slime_default_config = {
 -- Don't prompt on first send; just use the default config above.
 -- To override the target later, hit C-c v.
 vim.g.slime_dont_ask_default = 1
+-- Pi's TUI treats plain pasted newlines as Enter/submit. Bracketed paste
+-- lets tmux deliver multi-line prompts as one paste, then submit at the end.
+vim.g.slime_bracketed_paste = 1
