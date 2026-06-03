@@ -129,6 +129,10 @@ function M.run(source_cmd, fzf_args, on_select)
   -- Don't pollute :ls / <leader>b with leftover term:// buffers.
   vim.bo[term_buf].buflisted = false
   vim.bo[term_buf].bufhidden = "wipe"
+  -- vim-tmux-navigator checks ft=='fzf' to decide whether to pass C-j/k
+  -- through to the terminal or navigate panes. Without this, C-j triggers
+  -- TmuxNavigateDown instead of moving the fzf cursor.
+  vim.bo[term_buf].filetype = "fzf"
 
   vim.api.nvim_create_autocmd("TermClose", {
     buffer = term_buf,
