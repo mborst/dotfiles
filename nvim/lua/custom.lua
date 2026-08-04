@@ -8,16 +8,6 @@ local function feedkeys(keys, mode)
   vim.fn.feedkeys(termcodes(keys), mode or "n")
 end
 
-local function get_visual_selection()
-  -- Yank visual selection into register "
-  vim.cmd.normal({ args = { "y" }, bang = true })
-  return vim.fn.getreg('"')
-end
-
-local function rg_prompt(initial)
-  feedkeys(":Rg " .. initial, "n")
-end
-
 -- Delete all hidden, unmodified buffers
 function M.delete_hidden_buffers()
   local visible = {}
@@ -96,36 +86,5 @@ function M.substitute_visual()
   feedkeys(':%s/\\<<C-r>"\\>//<Left>', "n")
 end
 
--- Ripgrep mappings
-function M.rg_prompt_empty()
-  rg_prompt("")
-end
-
-function M.rg_prompt_cword()
-  rg_prompt(vim.fn.expand("<cword>"))
-end
-
-function M.rg_visual()
-  local text = get_visual_selection()
-  if text == "" then
-    return
-  end
-
-  rg_prompt(text)
-  vim.api.nvim_feedkeys(termcodes("<CR>"), "n", false)
-end
-
-function M.rg_word_boundary_cword()
-  vim.cmd("Rg \\b" .. vim.fn.expand("<cword>") .. "\\b")
-end
-
-function M.rg_word_boundary_visual()
-  local text = get_visual_selection()
-  if text == "" then
-    return
-  end
-
-  vim.cmd("Rg \\b" .. text .. "\\b")
-end
 
 return M

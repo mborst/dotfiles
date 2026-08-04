@@ -24,6 +24,9 @@ vim.pack.add({
   { src = "https://github.com/sbdchd/neoformat" },
   { src = "https://github.com/jpalardy/vim-slime" },
 
+  -- fzf (fuzzy finder for files, grep, LSP, buffers, etc.)
+  { src = "https://github.com/ibhagwan/fzf-lua" },
+
   -- quickfix UX (line context, edit-in-place, file grouping). Quickfix
   -- navigation itself uses native :cnext/:lnext mapped in mappings.lua.
   { src = "https://github.com/stevearc/quicker.nvim" },

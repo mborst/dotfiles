@@ -16,6 +16,10 @@
       "rev": "c642487086dbd9a93160e1679a1327be111cbc25",
       "src": "https://github.com/hrsh7th/cmp-path"
     },
+    "fzf-lua": {
+      "rev": "28440c741e927592877514fba3db21eb188caec8",
+      "src": "https://github.com/ibhagwan/fzf-lua"
+    },
     "neoformat": {
       "rev": "9d95e5ca3ab263363758d5b1d7a174a30556ab2d",
       "src": "https://github.com/sbdchd/neoformat"

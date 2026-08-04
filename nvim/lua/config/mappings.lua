@@ -30,16 +30,6 @@ map("n", "<leader>sr", custom.substitute_cword)
 
 map("v", "<leader>sr", custom.substitute_visual)
 
--- Ripgrep mappings
-map("n", "<leader>a", custom.rg_prompt_empty)
-
-map("n", "<leader>A", custom.rg_prompt_cword)
-
-map("v", "<leader>A", custom.rg_visual)
-
-map("n", "<leader>Ab", custom.rg_word_boundary_cword, { silent = true })
-
-map("v", "<leader>Ab", custom.rg_word_boundary_visual, { silent = true })
 
 -- Splits and buffer management
 map("n", "<leader>v", function()
