@@ -5,7 +5,7 @@ local M = {}
 function M.setup()
   local fzf = require("fzf-lua")
 
-  local rg_opts = "--column --line-number --no-heading --color=always --smart-case --hidden --glob '!.git/'"
+  local rg_opts = "--column --line-number --no-heading --color=always --smart-case --hidden --glob '!.git/' -e"
 
   fzf.setup({
     -- Use the same tokyonight fzf color scheme (fzf-lua reads
@@ -53,10 +53,6 @@ function M.setup()
   map("n", "<leader>a", fzf.live_grep, { desc = "fzf: live grep" })
   map("n", "<leader>A", fzf.grep_cword, { desc = "fzf: grep word under cursor" })
   map("v", "<leader>A", fzf.grep_visual, { desc = "fzf: grep visual selection" })
-  map("n", "<leader>Ab", function() fzf.grep_cword({ rg_opts = rg_opts .. " -w" }) end,
-    { desc = "fzf: grep word (boundary)" })
-  map("v", "<leader>Ab", function() fzf.grep_visual({ rg_opts = rg_opts .. " -w" }) end,
-    { desc = "fzf: grep visual (boundary)" })
 
   -- LSP pickers
   map("n", "<leader>lr", fzf.lsp_references, { desc = "fzf: LSP references" })
