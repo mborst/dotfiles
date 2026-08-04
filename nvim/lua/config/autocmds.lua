@@ -38,6 +38,11 @@ autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
   group = auto_checktime,
   pattern = "*",
   callback = function()
+    -- :checktime is invalid in the command-line window.
+    if vim.fn.getcmdwintype() ~= "" then
+      return
+    end
+
     vim.cmd("checktime")
   end,
 })
