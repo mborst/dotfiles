@@ -53,6 +53,10 @@ map("n", "<leader>bn", function()
   vim.cmd.bnext()
 end, { silent = true })
 
+map("n", "<leader>bp", function()
+  vim.cmd.bprev()
+end, { silent = true })
+
 map("n", "<leader>p", function()
   vim.fn.setreg("+", vim.fn.getreg('"'))
 end, { silent = true, desc = "Copy unnamed register to clipboard" })
